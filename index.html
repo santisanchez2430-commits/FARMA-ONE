@@ -4,63 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css">
-    <title>FarmaOne</title>
+    <title>FarmaOne - Inicio</title>
   </head>
   <body>
     <header class="navbar">
-      <a class="brand" href="#inicio"><span>FarmaOne</span></a>
+      <a class="brand" href="index.html"><span>FarmaOne</span></a>
       <button class="menu-toggle" id="btn-menu" aria-label="Abrir menú">&#9776;</button>
     </header>
 
     <nav class="menu" id="nav-menu">
       <ul>
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#medicamentos">Medicamentos</a></li>
-        <li><a href="#suplementos">Suplementos</a></li>
-        <li><a href="#equipos">Equipos Médicos</a></li>
+        <li><a href="index.html">Inicio</a></li>
+        <li>
+          <details>
+            <summary style="cursor: pointer; color: #0995d6; font-weight: bold; font-size: 1.1rem;">Categorías ▼</summary>
+            <ul style="list-style: none; padding-top: 10px; text-align: center;">
+              <li style="margin-bottom: 10px;"><a href="medicamentos.html">Medicamentos</a></li>
+              <li style="margin-bottom: 10px;"><a href="suplementos.html">Suplementos y Vitaminas</a></li>
+              <li style="margin-bottom: 10px;"><a href="equipos.html">Equipos Médicos</a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="cuidado-personal.html">Cuidado Personal</a></li>
+        <li><a href="ofertas.html">Ofertas del Mes</a></li>
+        <li><a href="carrito.html">Carrito (0) 🛒</a></li>
+        <!-- Enlace directo al archivo en la misma carpeta -->
+        <li><a href="cuenta.html">Mi Cuenta / Registro</a></li>
       </ul>
     </nav>
 
     <section id="inicio">
-      <h1>Pequeña prueba con CSS funcional</h1>
-      <p>¡Haz tus pedidos de la manera más efectiva!</p>
+      <h1>Bienvenido a tu farmacia en línea</h1>
+      <p>¡Encuentra todo lo que necesitas para tu salud y bienestar al mejor precio!</p>
       <article>
-        <h2>Bienvenido a FarmaOne</h2>
+        <h2>¿Qué ofrecemos en FarmaOne?</h2>
         <p>
           En FarmaOne nos dedicamos a ofrecerte la mejor experiencia en pedidos
-          de productos farmacéuticos. Nuestro objetivo es facilitar tu vida y
-          asegurarnos de que recibas tus productos de manera rápida y segura.
+          de productos farmacéuticos. Nuestro objetivo es facilitar tu vida y asegurarnos de que recibas tus productos de manera rápida y segura.
         </p>
       </article>
-    </section>
-
-    <section id="medicamentos">
-      <h1>Medicamentos</h1>
-      <p>
-        Descubre nuestra amplia selección de medicamentos para todos los tipos
-        de necesidades.
-      </p>
-    </section>
-
-    <section id="suplementos">
-      <h1>Suplementos</h1>
-      <p>
-        Explora nuestra variedad de suplementos para complementar tu dieta y
-        mejorar tu salud.
-      </p>
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5sT6zvWw1GSmR6SPRHIB8qPhpCi33j9M2_xcLWjpNMA&s=10" alt="BiPro Classic"/>
-      <button>Comprar</button>
-
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOzfSAtlvJxu-JEWf0TQLpGzLif6B8TWS2JCvHJv2doA&s=10" alt="Gold Standard" height="400" width="300"/>
-      <button>Comprar</button>
-    </section>
-
-    <section id="equipos">
-      <h1>Equipos Médicos</h1>
-      <p>
-        Encuentra equipos médicos de alta calidad para uso personal o
-        profesional.
-      </p>
     </section>
 
     <script>
@@ -69,12 +51,6 @@
 
       btn.addEventListener('click', () => {
         menu.classList.toggle('active');
-      });
-
-      document.querySelectorAll('.menu a').forEach(link => {
-        link.addEventListener('click', () => {
-          menu.classList.remove('active');
-        });
       });
     </script>
   </body>

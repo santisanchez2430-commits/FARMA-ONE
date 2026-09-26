@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>FarmaOne - Registro</title>
+  </head>
+  <body>
+    <header class="navbar">
+      <a class="brand" href="index.html"><span>FarmaOne</span></a>
+      <button class="menu-toggle" id="btn-menu" aria-label="Abrir menú">&#9776;</button>
+    </header>
+
+    <nav class="menu" id="nav-menu">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li>
+          <details>
+            <summary style="cursor: pointer; color: #0995d6; font-weight: bold; font-size: 1.1rem;">Categorías ▼</summary>
+            <ul style="list-style: none; padding-top: 10px; text-align: center;">
+              <li style="margin-bottom: 10px;"><a href="medicamentos.html">Medicamentos</a></li>
+              <li style="margin-bottom: 10px;"><a href="suplementos.html">Suplementos y Vitaminas</a></li>
+              <li style="margin-bottom: 10px;"><a href="equipos.html">Equipos Médicos</a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="cuidado-personal.html">Cuidado Personal</a></li>
+        <li><a href="ofertas.html">Ofertas del Mes</a></li>
+        <li><a href="carrito.html">Carrito (0) 🛒</a></li>
+        <li><a href="cuenta.html">Mi Cuenta / Registro</a></li>
+      </ul>
+    </nav>
+
+    <!-- SECCIÓN DE REGISTRO -->
+    <section id="registro" style="background-color: #ffffff; min-height: calc(100vh - 60px); display: flex; justify-content: center; align-items: center; padding: 40px 20px;">
+      <div style="background-color: #f4f8fb; padding: 30px 40px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; max-width: 450px;">
+        <h2 style="text-align: center; color: #333; margin-top: 0;">Crear Cuenta Nueva</h2>
+        
+        <form action="#" method="post" style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+          
+          <!-- Nombre de usuario -->
+          <div style="text-align: left;">
+            <label for="nombre" style="font-weight: bold; color: #333; display: block; margin-bottom: 5px;">Nombre de usuario:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required 
+                   style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 1rem;">
+          </div>
+
+          <!-- Correo -->
+          <div style="text-align: left;">
+            <label for="correo" style="font-weight: bold; color: #333; display: block; margin-bottom: 5px;">Correo Electrónico:</label>
+            <input type="email" id="correo" name="correo" placeholder="Ej: juan@correo.com" required 
+                   style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 1rem;">
+          </div>
+
+          <!-- Fecha de nacimiento (Bloquea menores de edad poniendo como fecha máxima hace 18 años, aprox año 2008) -->
+          <div style="text-align: left;">
+            <label for="fnacimiento" style="font-weight: bold; color: #333; display: block; margin-bottom: 5px;">Fecha de Nacimiento (+18 años):</label>
+            <input type="date" id="fnacimiento" name="fnacimiento" max="2008-01-01" required 
+                   style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 1rem;">
+          </div>
+
+          <!-- Dirección -->
+          <div style="text-align: left;">
+            <label for="direccion" style="font-weight: bold; color: #333; display: block; margin-bottom: 5px;">Dirección de envío:</label>
+            <input type="text" id="direccion" name="direccion" placeholder="Calle Principal #123" required 
+                   style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 1rem;">
+          </div>
+
+          <!-- Contraseña -->
+          <div style="text-align: left;">
+            <label for="reg-pass" style="font-weight: bold; color: #333; display: block; margin-bottom: 5px;">Contraseña:</label>
+            <input type="password" id="reg-pass" name="reg-pass" placeholder="********" required 
+                   style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 1rem;">
+          </div>
+
+          <!-- Verificación Anti-bot (Checkbox obligatorio) -->
+          <div style="display: flex; align-items: center; gap: 10px; background: #fff; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            <input type="checkbox" id="not-robot" required style="width: 20px; height: 20px; cursor: pointer;">
+            <label for="not-robot" style="font-size: 0.95rem; color: #333; cursor: pointer;">No soy un robot (Verificación)</label>
+          </div>
+
+          <!-- Botón Registrarse -->
+          <button type="submit" style="background-color: #0995d6; color: white; padding: 12px; border: none; border-radius: 5px; font-size: 1.1rem; cursor: pointer; font-weight: bold; margin-top: 5px;">
+            Registrarse
+          </button>
+        </form>
+
+        <p style="text-align: center; margin-top: 15px; font-size: 0.95rem; color: #555;">
+          ¿Ya tienes una cuenta? <a href="cuenta.html" style="color: #0995d6; font-weight: bold; text-decoration: none;">Inicia sesión aquí</a>
+        </p>
+      </div>
+    </section>
+
+    <script>
+      const btn = document.getElementById('btn-menu');
+      const menu = document.getElementById('nav-menu');
+
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('active');
+      });
+    </script>
+  </body>
+</html>
