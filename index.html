@@ -4,14 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css">
-    <title>FarmaOne - Inicio</title>
+    <title>FarmaOne - Tu Farmacia en Línea</title>
   </head>
   <body>
+    <!-- BARRA DE NAVEGACIÓN CON LOGOTIPO -->
     <header class="navbar">
-      <a class="brand" href="index.html"><span>FarmaOne</span></a>
+      <a class="brand" href="index.html">
+        <img src="logo.png" alt="FarmaOne Logo" style="height: 40px; vertical-align: middle; display: inline-block;">
+        <span>FarmaOne</span>
+      </a>
       <button class="menu-toggle" id="btn-menu" aria-label="Abrir menú">&#9776;</button>
     </header>
 
+    <!-- MENÚ DE NAVEGACIÓN (Conectado a Categorías, Cuenta y Registro) -->
     <nav class="menu" id="nav-menu">
       <ul>
         <li><a href="index.html">Inicio</a></li>
@@ -28,23 +33,83 @@
         <li><a href="cuidado-personal.html">Cuidado Personal</a></li>
         <li><a href="ofertas.html">Ofertas del Mes</a></li>
         <li><a href="carrito.html">Carrito (0) 🛒</a></li>
-        <!-- Enlace directo al archivo en la misma carpeta -->
-        <li><a href="cuenta.html">Mi Cuenta / Registro</a></li>
+        <li><a href="cuenta.html">Mi Cuenta</a></li>
+        <li><a href="registro.html">Regístrate</a></li>
       </ul>
     </nav>
 
-    <section id="inicio">
-      <h1>Bienvenido a tu farmacia en línea</h1>
-      <p>¡Encuentra todo lo que necesitas para tu salud y bienestar al mejor precio!</p>
-      <article>
-        <h2>¿Qué ofrecemos en FarmaOne?</h2>
-        <p>
-          En FarmaOne nos dedicamos a ofrecerte la mejor experiencia en pedidos
-          de productos farmacéuticos. Nuestro objetivo es facilitar tu vida y asegurarnos de que recibas tus productos de manera rápida y segura.
-        </p>
-      </article>
+    <!-- SECCIÓN DE BIENVENIDA Y ESLOGAN -->
+    <section class="hero-section">
+      <h1>Bienvenido a FarmaOne</h1>
+      <p class="hero-slogan">
+        Tu bienestar en buenas manos, con la rapidez que mereces.
+      </p>
     </section>
 
+    <!-- BANNER DE BORDE A BORDE (Ocupa todo el ancho de la pantalla) -->
+    <div class="full-width-banner">
+      <img src="banner-farma.png" alt="FarmaOne Farmacia en Línea">
+    </div>
+
+    <!-- SECCIÓN DE INFORMACIÓN E HISTORIA -->
+    <main style="padding: 40px 20px; max-width: 800px; margin: 0 auto; line-height: 1.7; color: #444;">
+      <section style="margin-bottom: 40px; text-align: center;">
+        <h2 style="color: #333; font-size: 1.8rem; margin-bottom: 15px;">¿Qué ofrecemos en FarmaOne?</h2>
+        <p style="font-size: 1.05rem; color: #555;">
+          En FarmaOne nos dedicamos a ofrecerte la mejor experiencia en pedidos de productos farmacéuticos, suplementos vitamínicos y equipos médicos esenciales. Nuestro objetivo es facilitar tu día a día, asegurándonos de que recibas tus productos de manera rápida, confiable y segura directamente en la puerta de tu hogar.
+        </p>
+      </section>
+
+      <section style="margin-bottom: 40px;">
+        <h2 style="color: #2c3e50; border-bottom: 2px solid #0995d6; padding-bottom: 8px;">Nuestra Historia</h2>
+        <p style="margin-top: 15px;">
+          FarmaOne nació con la firme convicción de transformar el acceso a la salud y al bienestar en el hogar. Comprendimos que las familias necesitan una alternativa rápida, confiable y cercana a los servicios farmacéuticos tradicionales, eliminando largas filas y optimizando la entrega de medicamentos esenciales.
+        </p>
+      </section>
+
+      <section style="margin-bottom: 40px;">
+        <h2 style="color: #2c3e50; border-bottom: 2px solid #0995d6; padding-bottom: 8px;">Nuestra Misión y Visión</h2>
+        <p style="margin-top: 15px;">
+          <strong>Misión:</strong> Proveer productos farmacéuticos y de cuidado de la salud de la más alta calidad con un servicio ágil, transparente y enfocado en el bienestar de cada cliente.
+        </p>
+        <p style="margin-top: 10px;">
+          <strong>Visión:</strong> Ser la farmacia en línea líder a nivel nacional, reconocida por nuestra innovación constante, calidez humana y compromiso absoluto con la salud de la comunidad.
+        </p>
+      </section>
+    </main>
+
+    <!-- FOOTER / PIE DE PÁGINA -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        
+        <div class="footer-col">
+          <h3>FarmaOne</h3>
+          <p>Tu farmacia en línea de confianza. Brindando salud, bienestar y rapidez en cada pedido para ti y tu familia.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Enlaces Rápidos</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="cuenta.html">Mi Cuenta</a></li>
+            <li><a href="registro.html">Regístrate</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <p>📧 Soporte: contacto@farmaone.com</p>
+          <p>📞 Teléfono: +123 456 7890</p>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        &copy; 2026 FarmaOne. Todos los derechos reservados.
+      </div>
+    </footer>
+
+    <!-- SCRIPT PARA EL MENÚ MÓVIL -->
     <script>
       const btn = document.getElementById('btn-menu');
       const menu = document.getElementById('nav-menu');
