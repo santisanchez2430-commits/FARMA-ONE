@@ -7,26 +7,41 @@
     <title>FarmaOne - Tu Farmacia en Línea</title>
   </head>
   <body>
-    <!-- BARRA DE NAVEGACIÓN CON LOGOTIPO -->
+    <!-- BARRA DE NAVEGACIÓN (LOGOTIPO GRANDE + BÚSQUEDA + ACCESO A CUENTA) -->
     <header class="navbar">
+      <!-- Logo más grande y legible -->
       <a class="brand" href="index.html">
-        <img src="logo.png" alt="FarmaOne Logo" style="height: 40px; vertical-align: middle; display: inline-block;">
+        <img src="logo.png" alt="FarmaOne Logo" class="logo-img">
         <span>FarmaOne</span>
       </a>
-      <button class="menu-toggle" id="btn-menu" aria-label="Abrir menú">&#9776;</button>
+
+      <!-- Barra de búsqueda simulada al lado del título -->
+      <div class="search-bar-container">
+        <input type="text" placeholder="Buscar medicamentos, vitaminas..." class="search-input" disabled>
+        <button type="button" class="search-btn">🔍</button>
+      </div>
+
+      <!-- Icono de usuario para ir a cuenta/registro -->
+      <div class="nav-actions">
+        <a href="cuenta.html" class="user-icon-link" title="Mi Cuenta / Registro">
+          👤 <span class="user-text">Mi Cuenta</span>
+        </a>
+        <button class="menu-toggle" id="btn-menu" aria-label="Abrir menú">&#9776;</button>
+      </div>
     </header>
 
-    <!-- MENÚ DE NAVEGACIÓN (Conectado a Categorías, Cuenta y Registro) -->
+    <!-- MENÚ DESPLEGABLE (Con la nueva opción de Catálogo integrada) -->
     <nav class="menu" id="nav-menu">
       <ul>
         <li><a href="index.html">Inicio</a></li>
+        <li><a href="catalogo.html" style="color: #0995d6; font-weight: bold;">Catálogo </a></li>
         <li>
           <details>
             <summary style="cursor: pointer; color: #0995d6; font-weight: bold; font-size: 1.1rem;">Categorías ▼</summary>
             <ul style="list-style: none; padding-top: 10px; text-align: center;">
-              <li style="margin-bottom: 10px;"><a href="medicamentos.html">Medicamentos</a></li>
-              <li style="margin-bottom: 10px;"><a href="suplementos.html">Suplementos y Vitaminas</a></li>
-              <li style="margin-bottom: 10px;"><a href="equipos.html">Equipos Médicos</a></li>
+              <li style="margin-bottom: 10px;"><a href="medicamentos.html">Medicamentos (15)</a></li>
+              <li style="margin-bottom: 10px;"><a href="suplementos.html">Suplementos y Vitaminas (5)</a></li>
+              <li style="margin-bottom: 10px;"><a href="equipos.html">Equipos Médicos (10)</a></li>
             </ul>
           </details>
         </li>
@@ -46,7 +61,7 @@
       </p>
     </section>
 
-    <!-- BANNER DE BORDE A BORDE (Ocupa todo el ancho de la pantalla) -->
+    <!-- BANNER DE BORDE A BORDE -->
     <div class="full-width-banner">
       <img src="banner-farma.png" alt="FarmaOne Farmacia en Línea">
     </div>
@@ -78,7 +93,7 @@
       </section>
     </main>
 
-    <!-- FOOTER / PIE DE PÁGINA -->
+    <!-- FOOTER -->
     <footer class="site-footer">
       <div class="footer-container">
         
@@ -91,6 +106,7 @@
           <h4>Enlaces Rápidos</h4>
           <ul>
             <li><a href="index.html">Inicio</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
             <li><a href="cuenta.html">Mi Cuenta</a></li>
             <li><a href="registro.html">Regístrate</a></li>
           </ul>

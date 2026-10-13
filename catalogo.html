@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>Catálogo - FarmaOne</title>
+  </head>
+  <body>
+    <!-- BARRA DE NAVEGACIÓN (Idéntica al Index) -->
+    <header class="navbar">
+      <a class="brand" href="index.html">
+        <img src="logo.png" alt="FarmaOne Logo" class="logo-img">
+        <span>FarmaOne</span>
+      </a>
+
+      <div class="search-bar-container">
+        <input type="text" placeholder="Buscar medicamentos, vitaminas..." class="search-input" disabled>
+        <button type="button" class="search-btn">🔍</button>
+      </div>
+
+      <div class="nav-actions">
+        <a href="cuenta.html" class="user-icon-link" title="Mi Cuenta / Registro">
+          👤 <span class="user-text">Mi Cuenta</span>
+        </a>
+        <button class="menu-toggle" id="btn-menu" aria-label="Abrir menú">&#9776;</button>
+      </div>
+    </header>
+
+    <!-- MENÚ DESPLEGABLE -->
+    <nav class="menu" id="nav-menu">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="catalogo.html" style="color: #0995d6; font-weight: bold;">Catálogo (30 Productos)</a></li>
+        <li>
+          <details>
+            <summary style="cursor: pointer; color: #0995d6; font-weight: bold; font-size: 1.1rem;">Categorías ▼</summary>
+            <ul style="list-style: none; padding-top: 10px; text-align: center;">
+              <li style="margin-bottom: 10px;"><a href="medicamentos.html">Medicamentos (15)</a></li>
+              <li style="margin-bottom: 10px;"><a href="suplementos.html">Suplementos y Vitaminas (5)</a></li>
+              <li style="margin-bottom: 10px;"><a href="equipos.html">Equipos Médicos (10)</a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="cuidado-personal.html">Cuidado Personal</a></li>
+        <li><a href="ofertas.html">Ofertas del Mes</a></li>
+        <li><a href="carrito.html">Carrito (0) 🛒</a></li>
+        <li><a href="cuenta.html">Mi Cuenta</a></li>
+        <li><a href="registro.html">Regístrate</a></li>
+      </ul>
+    </nav>
+
+    <!-- TÍTULO DE LA SECCIÓN -->
+    <section style="text-align: center; margin-top: 30px;">
+      <h1 style="color: #2c3e50; font-size: 2rem;">Catálogo General de Productos</h1>
+      <p style="color: #666; margin-top: 5px;">Explora nuestra selección de medicamentos, suplementos y equipos médicos.</p>
+    </section>
+
+    <!-- CONTENEDOR DE LAS TARJETAS HORIZONTALES -->
+    <main class="catalogo-container">
+
+      
+      <div class="product-card-horizontal">
+        <img src="ace1.png" alt="Foto producto" class="product-img">
+        <div class="product-info">
+          <h3>Acetaminofén MK 500mg</h3>
+          <p class="product-desc">Analgésico y antipirético indicado para aliviar dolores leves a moderados, como dolor de cabeza, muscular, dental y malestar general. También ayuda a reducir la fiebre. Presentación: caja con 20 tabletas de 500 mg.
+</p>
+          <span class="product-price">$9.900 COP</span>
+        </div>
+        <div class="product-actions">
+          <button class="btn-buy">Comprar</button>
+          <button class="btn-cart">🛒</button>
+        </div>
+      </div>
+
+      <!-- Producto de prueba 2 -->
+      <div class="product-card-horizontal">
+        <img src="ibu.png" alt="Foto producto" class="product-img">
+        <div class="product-info">
+          <h3>Ibuprofeno Genfar 400mg</h3>
+          <p class="product-desc">Analgésico, antiinflamatorio y antipirético indicado para aliviar dolores leves a moderados, reducir la inflamación y disminuir la fiebre. Puede utilizarse para molestias como dolor de cabeza, muscular, dental y menstrual. Presentación: caja con 10 tabletas de 400 mg.</p>
+          <span class="product-price">$3.500 COP</span>
+        </div>
+        <div class="product-actions">
+          <button class="btn-buy">Comprar</button>
+          <button class="btn-cart">🛒</button>
+        </div>
+      </div>
+
+      <!-- Producto de prueba 3 -->
+      <div class="product-card-horizontal">
+        <img src="logo.png" alt="Foto producto" class="product-img">
+        <div class="product-info">
+          <h3>Nombre del Producto 3</h3>
+          <p class="product-desc">Breve descripción del producto indicando presentación o para qué sirve.</p>
+          <span class="product-price">$0.00</span>
+        </div>
+        <div class="product-actions">
+          <button class="btn-buy">Comprar</button>
+          <button class="btn-cart">🛒</button>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3>FarmaOne</h3>
+          <p>Tu farmacia en línea de confianza.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Enlaces Rápidos</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <p>📧 Soporte: contacto@farmaone.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 FarmaOne. Todos los derechos reservados.
+      </div>
+    </footer>
+
+    <!-- SCRIPT PARA EL MENÚ MÓVIL -->
+    <script>
+      const btn = document.getElementById('btn-menu');
+      const menu = document.getElementById('nav-menu');
+
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('active');
+      });
+    </script>
+  </body>
+</html>
