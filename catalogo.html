@@ -1,141 +1,272 @@
+
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Catálogo - FarmaOne</title>
-  </head>
-  <body>
-    <!-- BARRA DE NAVEGACIÓN (Idéntica al Index) -->
+</head>
+
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN -->
     <header class="navbar">
-      <a class="brand" href="index.html">
-        <img src="logo.png" alt="FarmaOne Logo" class="logo-img">
-        <span>FarmaOne</span>
-      </a>
-
-      <div class="search-bar-container">
-        <input type="text" placeholder="Buscar medicamentos, vitaminas..." class="search-input" disabled>
-        <button type="button" class="search-btn">🔍</button>
-      </div>
-
-      <div class="nav-actions">
-        <a href="cuenta.html" class="user-icon-link" title="Mi Cuenta / Registro">
-          👤 <span class="user-text">Mi Cuenta</span>
+        <a class="brand" href="index.html">
+            <img src="logo.png" alt="FarmaOne Logo" class="logo-img">
+            <span>FarmaOne</span>
         </a>
-        <button class="menu-toggle" id="btn-menu" aria-label="Abrir menú">&#9776;</button>
-      </div>
+
+        <div class="search-bar-container">
+            <input
+                type="text"
+                placeholder="Buscar medicamentos, vitaminas..."
+                class="search-input"
+                disabled
+            >
+            <button type="button" class="search-btn">🔍</button>
+        </div>
+
+        <div class="nav-actions">
+            <a href="cuenta.html" class="user-icon-link" title="Mi Cuenta">
+                👤 <span class="user-text">Mi Cuenta</span>
+            </a>
+
+            <button class="menu-toggle" id="btn-menu" aria-label="Abrir menú">
+                &#9776;
+            </button>
+        </div>
     </header>
 
     <!-- MENÚ DESPLEGABLE -->
     <nav class="menu" id="nav-menu">
-      <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="catalogo.html" style="color: #0995d6; font-weight: bold;">Catálogo (30 Productos)</a></li>
-        <li>
-          <details>
-            <summary style="cursor: pointer; color: #0995d6; font-weight: bold; font-size: 1.1rem;">Categorías ▼</summary>
-            <ul style="list-style: none; padding-top: 10px; text-align: center;">
-              <li style="margin-bottom: 10px;"><a href="medicamentos.html">Medicamentos (15)</a></li>
-              <li style="margin-bottom: 10px;"><a href="suplementos.html">Suplementos y Vitaminas (5)</a></li>
-              <li style="margin-bottom: 10px;"><a href="equipos.html">Equipos Médicos (10)</a></li>
-            </ul>
-          </details>
-        </li>
-        <li><a href="cuidado-personal.html">Cuidado Personal</a></li>
-        <li><a href="ofertas.html">Ofertas del Mes</a></li>
-        <li><a href="carrito.html">Carrito (0) 🛒</a></li>
-        <li><a href="cuenta.html">Mi Cuenta</a></li>
-        <li><a href="registro.html">Regístrate</a></li>
-      </ul>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+
+            <li>
+                <a href="catalogo.html" style="color:#0995d6; font-weight:bold;">
+                    Catálogo (30 Productos)
+                </a>
+            </li>
+
+            <li>
+                <details>
+                    <summary style="cursor:pointer; color:#0995d6; font-weight:bold; font-size:1.1rem;">
+                        Categorías ▼
+                    </summary>
+
+                    <ul style="list-style:none; padding-top:10px; text-align:center;">
+                        <li style="margin-bottom:10px;">
+                            <a href="medicamentos.html">Medicamentos (10)</a>
+                        </li>
+
+                        <li style="margin-bottom:10px;">
+                            <a href="suplementos.html">Suplementos y Vitaminas (10)</a>
+                        </li>
+
+                        <li style="margin-bottom:10px;">
+                            <a href="equipos.html">Equipos Médicos (10)</a>
+                        </li>
+                    </ul>
+                </details>
+            </li>
+
+            <li><a href="cuidado-personal.html">Cuidado Personal</a></li>
+            <li><a href="ofertas.html">Ofertas del Mes</a></li>
+            <li><a href="carrito.html">Carrito (0) 🛒</a></li>
+            <li><a href="cuenta.html">Mi Cuenta</a></li>
+            <li><a href="registro.html">Regístrate</a></li>
+        </ul>
     </nav>
 
-    <!-- TÍTULO DE LA SECCIÓN -->
-    <section style="text-align: center; margin-top: 30px;">
-      <h1 style="color: #2c3e50; font-size: 2rem;">Catálogo General de Productos</h1>
-      <p style="color: #666; margin-top: 5px;">Explora nuestra selección de medicamentos, suplementos y equipos médicos.</p>
+    <!-- TÍTULO DEL CATÁLOGO -->
+    <section style="text-align:center; margin-top:30px;">
+        <h1 style="color:#2c3e50; font-size:2rem;">
+            Catálogo General de Productos
+        </h1>
+
+        <p style="color:#666; margin-top:5px;">
+            Explora nuestra selección de medicamentos, suplementos y equipos médicos.
+        </p>
     </section>
 
-    <!-- CONTENEDOR DE LAS TARJETAS HORIZONTALES -->
-    <main class="catalogo-container">
+    <!-- MENSAJE DE ESTADO -->
+    <p id="mensaje-carga" style="text-align:center; margin:25px;">
+        Preparando catálogo...
+    </p>
 
-      
-      <div class="product-card-horizontal">
-        <img src="ace1.png" alt="Foto producto" class="product-img">
-        <div class="product-info">
-          <h3>Acetaminofén MK 500mg</h3>
-          <p class="product-desc">Analgésico y antipirético indicado para aliviar dolores leves a moderados, como dolor de cabeza, muscular, dental y malestar general. También ayuda a reducir la fiebre. Presentación: caja con 20 tabletas de 500 mg.
-</p>
-          <span class="product-price">$9.900 COP</span>
-        </div>
-        <div class="product-actions">
-          <button class="btn-buy">Comprar</button>
-          <button class="btn-cart">🛒</button>
-        </div>
-      </div>
-
-      <!-- Producto de prueba 2 -->
-      <div class="product-card-horizontal">
-        <img src="ibu.png" alt="Foto producto" class="product-img">
-        <div class="product-info">
-          <h3>Ibuprofeno Genfar 400mg</h3>
-          <p class="product-desc">Analgésico, antiinflamatorio y antipirético indicado para aliviar dolores leves a moderados, reducir la inflamación y disminuir la fiebre. Puede utilizarse para molestias como dolor de cabeza, muscular, dental y menstrual. Presentación: caja con 10 tabletas de 400 mg.</p>
-          <span class="product-price">$3.500 COP</span>
-        </div>
-        <div class="product-actions">
-          <button class="btn-buy">Comprar</button>
-          <button class="btn-cart">🛒</button>
-        </div>
-      </div>
-
-      <!-- Producto de prueba 3 -->
-      <div class="product-card-horizontal">
-        <img src="logo.png" alt="Foto producto" class="product-img">
-        <div class="product-info">
-          <h3>Nombre del Producto 3</h3>
-          <p class="product-desc">Breve descripción del producto indicando presentación o para qué sirve.</p>
-          <span class="product-price">$0.00</span>
-        </div>
-        <div class="product-actions">
-          <button class="btn-buy">Comprar</button>
-          <button class="btn-cart">🛒</button>
-        </div>
-      </div>
-
-    </main>
+    <!-- PRODUCTOS -->
+    <main class="catalogo-container" id="lista-productos"></main>
 
     <!-- FOOTER -->
     <footer class="site-footer">
-      <div class="footer-container">
-        <div class="footer-col">
-          <h3>FarmaOne</h3>
-          <p>Tu farmacia en línea de confianza.</p>
+        <div class="footer-container">
+
+            <div class="footer-col">
+                <h3>FarmaOne</h3>
+                <p>Tu farmacia en línea de confianza.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="catalogo.html">Catálogo</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <p>📧 Soporte: contacto@farmaone.com</p>
+            </div>
+
         </div>
-        <div class="footer-col">
-          <h4>Enlaces Rápidos</h4>
-          <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="catalogo.html">Catálogo</a></li>
-          </ul>
+
+        <div class="footer-bottom">
+            &copy; 2026 FarmaOne. Todos los derechos reservados.
         </div>
-        <div class="footer-col">
-          <h4>Contacto</h4>
-          <p>📧 Soporte: contacto@farmaone.com</p>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        &copy; 2026 FarmaOne. Todos los derechos reservados.
-      </div>
     </footer>
 
-    <!-- SCRIPT PARA EL MENÚ MÓVIL -->
+    <!-- MENÚ MÓVIL -->
     <script>
-      const btn = document.getElementById('btn-menu');
-      const menu = document.getElementById('nav-menu');
+        const btn = document.getElementById('btn-menu');
+        const menu = document.getElementById('nav-menu');
 
-      btn.addEventListener('click', () => {
-        menu.classList.toggle('active');
-      });
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
     </script>
-  </body>
+
+    <!-- CONEXIÓN CON SUPABASE -->
+    <script type="module">
+
+        import { supabase } from './supabase.js';
+
+        const listaProductos = document.getElementById('lista-productos');
+        const mensajeCarga = document.getElementById('mensaje-carga');
+
+        async function cargarProductos() {
+
+            try {
+
+                mensajeCarga.textContent = 'Conectando con FarmaOne...';
+
+                const { data, error } = await supabase
+                    .from('productos')
+                    .select('id, nombre, descripcion, categoria, precio, imagen, stock')
+                    .eq('activo', true)
+                    .order('id', { ascending: true });
+
+                if (error) {
+                    throw error;
+                }
+
+                if (!data || data.length === 0) {
+                    mensajeCarga.textContent = 'No hay productos disponibles.';
+                    return;
+                }
+
+                listaProductos.innerHTML = '';
+
+                data.forEach(producto => {
+
+                    const tarjeta = document.createElement('div');
+                    tarjeta.className = 'product-card-horizontal';
+
+                    // IMAGEN
+                    const imagen = document.createElement('img');
+                    imagen.className = 'product-img';
+                    imagen.alt = producto.nombre;
+                    imagen.loading = 'lazy';
+
+                    const imagenAlternativa =
+                        'https://placehold.co/300x300?text=FarmaOne';
+
+                    imagen.src = producto.imagen || imagenAlternativa;
+
+                    imagen.onerror = function() {
+                        this.onerror = null;
+                        this.src = imagenAlternativa;
+                    };
+
+                    // INFORMACIÓN
+                    const informacion = document.createElement('div');
+                    informacion.className = 'product-info';
+
+                    const nombre = document.createElement('h3');
+                    nombre.textContent = producto.nombre;
+
+                    const descripcion = document.createElement('p');
+                    descripcion.className = 'product-desc';
+                    descripcion.textContent =
+                        producto.descripcion || 'Información no disponible.';
+
+                    const categoria = document.createElement('p');
+                    categoria.textContent =
+                        'Categoría: ' + producto.categoria;
+
+                    const precio = document.createElement('span');
+                    precio.className = 'product-price';
+
+                    precio.textContent = new Intl.NumberFormat('es-CO', {
+                        style: 'currency',
+                        currency: 'COP',
+                        maximumFractionDigits: 0
+                    }).format(producto.precio);
+
+                    informacion.appendChild(nombre);
+                    informacion.appendChild(descripcion);
+                    informacion.appendChild(categoria);
+                    informacion.appendChild(precio);
+
+                    // BOTONES
+                    const acciones = document.createElement('div');
+                    acciones.className = 'product-actions';
+
+                    const botonComprar = document.createElement('button');
+                    botonComprar.className = 'btn-buy';
+                    botonComprar.type = 'button';
+                    botonComprar.textContent = 'Comprar';
+                    botonComprar.disabled = true;
+                    botonComprar.title = 'Función pendiente de conectar';
+
+                    const botonCarrito = document.createElement('button');
+                    botonCarrito.className = 'btn-cart';
+                    botonCarrito.type = 'button';
+                    botonCarrito.textContent = '🛒';
+                    botonCarrito.disabled = true;
+                    botonCarrito.title = 'Carrito pendiente de conectar';
+
+                    acciones.appendChild(botonComprar);
+                    acciones.appendChild(botonCarrito);
+
+                    // ARMAR TARJETA
+                    tarjeta.appendChild(imagen);
+                    tarjeta.appendChild(informacion);
+                    tarjeta.appendChild(acciones);
+
+                    listaProductos.appendChild(tarjeta);
+
+                });
+
+                mensajeCarga.textContent =
+                    'Se encontraron ' + data.length +
+                    ' productos en FarmaOne.';
+
+            } catch (error) {
+
+                console.error('Error al cargar productos:', error);
+
+                mensajeCarga.textContent =
+                    'Error al cargar los productos: ' + error.message;
+
+            }
+
+        }
+
+        cargarProductos();
+
+    </script>
+
+</body>
 </html>
