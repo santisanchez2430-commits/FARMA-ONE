@@ -1,0 +1,782 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi carrito - FarmaOne</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7f8;
+      color: #24313a;
+      font-size: 17px;
+    }
+
+    .pagina-carrito {
+      width: min(1050px, 94%);
+      margin: 35px auto;
+    }
+
+    .titulo-pagina {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .titulo-pagina h1 {
+      font-size: 32px;
+      color: #176b50;
+      margin-bottom: 8px;
+    }
+
+    .panel {
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      margin-bottom: 22px;
+      box-shadow: 0 2px 12px #0000000d;
+    }
+
+    .producto-carrito {
+      display: grid;
+      grid-template-columns: 105px 1fr auto;
+      gap: 20px;
+      align-items: center;
+      padding: 18px 0;
+      border-bottom: 1px solid #e5e9eb;
+    }
+
+    .producto-carrito img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      border-radius: 9px;
+      background: #f8f9fa;
+    }
+
+    .producto-carrito h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+
+    .producto-carrito p {
+      margin: 5px 0;
+      color: #52616b;
+    }
+
+    .cantidad-controles {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .cantidad-controles button {
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: 8px;
+      background: #e4f2eb;
+      color: #176b50;
+      font-size: 23px;
+      cursor: pointer;
+    }
+
+    .cantidad-controles button:disabled {
+      opacity: .4;
+      cursor: not-allowed;
+    }
+
+    .btn-eliminar {
+      background: #fff0f0 !important;
+      color: #b42318 !important;
+      font-size: 15px !important;
+      width: auto !important;
+      padding: 8px 12px;
+    }
+
+    .resumen-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 23px;
+      font-weight: bold;
+      padding-top: 20px;
+    }
+
+    .precio-total { color: #176b50; }
+
+    .formulario-pedido h2,
+    .panel h2 {
+      color: #176b50;
+      margin-top: 0;
+    }
+
+    .campo {
+      margin-bottom: 18px;
+    }
+
+    .campo label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .campo input,
+    .campo textarea {
+      width: 100%;
+      padding: 14px;
+      font-size: 17px;
+      border: 1px solid #cbd5da;
+      border-radius: 8px;
+      background: white;
+    }
+
+    .campo textarea {
+      min-height: 85px;
+      resize: vertical;
+    }
+
+    .opcion-entrega {
+      display: block;
+      padding: 16px;
+      margin: 12px 0;
+      border: 1px solid #d4dfe0;
+      border-radius: 9px;
+      cursor: pointer;
+    }
+
+    .opcion-entrega input {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+      margin-right: 9px;
+    }
+
+    .ayuda {
+      color: #58666d;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .boton-principal {
+      display: block;
+      width: 100%;
+      padding: 17px;
+      border: 0;
+      border-radius: 9px;
+      background: #176b50;
+      color: white;
+      font-size: 19px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .boton-principal:hover { background: #10543e; }
+    .boton-principal:disabled { opacity: .55; cursor: not-allowed; }
+
+    .boton-secundario {
+      display: inline-block;
+      padding: 12px 18px;
+      background: #e4f2eb;
+      color: #176b50;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 12px;
+    }
+
+    .mensaje {
+      display: none;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 15px 0;
+      line-height: 1.5;
+    }
+
+    .mensaje.error {
+      display: block;
+      background: #fff0f0;
+      color: #a32121;
+    }
+
+    .mensaje.exito {
+      display: block;
+      background: #e8f6ed;
+      color: #176b50;
+    }
+
+    .carrito-vacio {
+      text-align: center;
+      padding: 35px 10px;
+    }
+
+    .carrito-vacio p { font-size: 19px; }
+
+    .pie-pagina {
+      text-align: center;
+      padding: 25px;
+      background: #176b50;
+      color: white;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 650px) {
+      .pagina-carrito { width: 94%; margin: 20px auto; }
+      .panel { padding: 17px; }
+      .producto-carrito {
+        grid-template-columns: 75px 1fr;
+        gap: 12px;
+      }
+      .producto-carrito img { width: 72px; height: 72px; }
+      .producto-precio {
+        grid-column: 2;
+      }
+      .titulo-pagina h1 { font-size: 26px; }
+      .resumen-total { font-size: 19px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="navbar">
+    <div class="brand">
+      <a href="index.html">FarmaOne</a>
+    </div>
+
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="cuenta.html">Mi cuenta</a>
+      <a href="carrito.html">Mi carrito</a>
+    </nav>
+  </header>
+
+  <main class="pagina-carrito">
+
+    <div class="titulo-pagina">
+      <h1>Mi carrito de compras</h1>
+      <p>Revisa tus productos antes de confirmar el pedido.</p>
+    </div>
+
+    <section class="panel">
+      <h2>Productos seleccionados</h2>
+      <div id="lista-productos">
+        Cargando carrito...
+      </div>
+
+      <div id="resumen" hidden>
+        <div class="resumen-total">
+          <span>Total del pedido:</span>
+          <span class="precio-total" id="total">$0</span>
+        </div>
+      </div>
+
+      <a class="boton-secundario" href="catalogo.html">
+        Seguir comprando
+      </a>
+    </section>
+
+    <section class="panel formulario-pedido" id="seccion-confirmacion" hidden>
+      <h2>Datos para tu pedido</h2>
+
+      <p class="ayuda">
+        Completa tus datos para que podamos preparar y entregar tu pedido.
+        Los campos marcados son obligatorios.
+      </p>
+
+      <div id="mensaje-login" class="mensaje error" hidden>
+        Para confirmar tu pedido primero debes iniciar sesión.
+        <br>
+        <a href="cuenta.html">Ir a mi cuenta</a>
+      </div>
+
+      <form id="form-pedido">
+
+        <div class="campo">
+          <label for="nombre">Nombre completo *</label>
+          <input id="nombre" type="text" minlength="2"
+                 maxlength="100" required autocomplete="name"
+                 placeholder="Escribe tu nombre completo">
+        </div>
+
+        <div class="campo">
+          <label for="telefono">Teléfono de contacto *</label>
+          <input id="telefono" type="tel" minlength="7"
+                 maxlength="20" required autocomplete="tel"
+                 placeholder="Ej. 3001234567">
+        </div>
+
+        <h2>¿Cómo deseas recibir tu pedido?</h2>
+
+        <label class="opcion-entrega">
+          <input type="radio" name="tipo_entrega"
+                 value="domicilio" checked>
+          <strong>Quiero recibirlo en mi casa</strong>
+          <div class="ayuda">Domicilio.</div>
+        </label>
+
+        <label class="opcion-entrega">
+          <input type="radio" name="tipo_entrega"
+                 value="recoger">
+          <strong>Quiero recogerlo en el establecimiento</strong>
+          <div class="ayuda">No necesitas escribir una dirección.</div>
+        </label>
+
+        <div id="datos-domicilio">
+          <div class="campo">
+            <label for="direccion">Dirección de entrega *</label>
+            <input id="direccion" type="text" maxlength="180"
+                   autocomplete="street-address"
+                   placeholder="Ej. Calle 50 # 20-30">
+          </div>
+
+          <div class="campo">
+            <label for="barrio">Barrio *</label>
+            <input id="barrio" type="text" maxlength="100"
+                   placeholder="Escribe tu barrio">
+          </div>
+
+          <div class="campo">
+            <label for="indicaciones">Indicaciones adicionales (opcional)</label>
+            <textarea id="indicaciones" maxlength="500"
+                      placeholder="Ej. Casa de reja blanca, apartamento 201."></textarea>
+          </div>
+        </div>
+
+        <div class="panel" style="background:#f3f8f5; padding:16px;">
+          <strong>Forma de pago</strong>
+          <p id="texto-pago" class="ayuda">
+            Pagarás en efectivo cuando recibas tu pedido.
+          </p>
+          <p class="ayuda">
+            No se realizará ningún cobro por internet.
+          </p>
+        </div>
+
+        <div id="mensaje-pedido" class="mensaje"></div>
+
+        <button type="submit" class="boton-principal" id="btn-confirmar">
+          CONFIRMAR MI PEDIDO
+        </button>
+
+      </form>
+    </section>
+
+    <section class="panel" id="confirmacion-final" hidden>
+      <h2>¡Tu pedido fue registrado!</h2>
+      <p id="numero-pedido"></p>
+      <p>
+        Tu pedido quedó pendiente de confirmación.
+        El establecimiento se comunicará contigo para coordinar la entrega.
+      </p>
+      <a href="catalogo.html" class="boton-secundario">
+        Volver al catálogo
+      </a>
+    </section>
+
+  </main>
+
+  <footer class="pie-pagina">
+    <p>FarmaOne - Tu salud es nuestra prioridad.</p>
+  </footer>
+
+  <script type="module">
+    import { supabase } from './supabase.js';
+
+    const CLAVE_CARRITO = 'farmaone_carrito';
+
+    const listaProductos = document.getElementById('lista-productos');
+    const resumen = document.getElementById('resumen');
+    const totalElemento = document.getElementById('total');
+    const seccionConfirmacion = document.getElementById('seccion-confirmacion');
+    const formulario = document.getElementById('form-pedido');
+    const mensajePedido = document.getElementById('mensaje-pedido');
+    const mensajeLogin = document.getElementById('mensaje-login');
+    const botonConfirmar = document.getElementById('btn-confirmar');
+
+    let carrito = [];
+    let productosActuales = new Map();
+    let usuarioActual = null;
+    let carritoValido = true;
+
+    function leerCarrito() {
+      try {
+        const guardado = JSON.parse(
+          localStorage.getItem(CLAVE_CARRITO) || '[]'
+        );
+
+        return Array.isArray(guardado) ? guardado : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function guardarCarrito() {
+      localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
+    }
+
+    function escapar(texto) {
+      return String(texto ?? '').replace(/[&<>"']/g, letra => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      })[letra]);
+    }
+
+    function formatoPesos(valor) {
+      return new Intl.NumberFormat('es-CO', {
+        style: 'currency',
+        currency: 'COP',
+        maximumFractionDigits: 0
+      }).format(valor);
+    }
+
+    function mostrarMensaje(texto, tipo) {
+      mensajePedido.textContent = texto;
+      mensajePedido.className = 'mensaje ' + tipo;
+    }
+
+    function obtenerTotal() {
+      return carrito.reduce((suma, item) => {
+        const producto = productosActuales.get(String(item.id));
+        if (!producto) return suma;
+        return suma + Number(producto.precio) * Number(item.cantidad);
+      }, 0);
+    }
+
+    async function cargarProductos() {
+      carrito = leerCarrito();
+
+      if (carrito.length === 0) {
+        renderizarCarrito();
+        return;
+      }
+
+      const ids = [...new Set(carrito.map(item => String(item.id)))];
+
+      const { data, error } = await supabase
+        .from('productos')
+        .select('id,nombre,descripcion,precio,imagen,stock,activo')
+        .in('id', ids)
+        .eq('activo', true);
+
+      if (error) {
+        listaProductos.textContent =
+          'No fue posible consultar los productos. Intenta nuevamente.';
+        console.error(error);
+        return;
+      }
+
+      productosActuales = new Map(
+        (data || []).map(producto => [String(producto.id), producto])
+      );
+
+      renderizarCarrito();
+    }
+
+    function renderizarCarrito() {
+      if (carrito.length === 0) {
+        listaProductos.innerHTML = `
+          <div class="carrito-vacio">
+            <h3>Tu carrito está vacío</h3>
+            <p>Agrega productos del catálogo para comenzar tu compra.</p>
+            <a class="boton-secundario" href="catalogo.html">
+              Ver catálogo
+            </a>
+          </div>
+        `;
+
+        resumen.hidden = true;
+        seccionConfirmacion.hidden = true;
+        return;
+      }
+
+      carritoValido = true;
+
+      listaProductos.innerHTML = carrito.map(item => {
+        const producto = productosActuales.get(String(item.id));
+
+        if (!producto) {
+          carritoValido = false;
+
+          return `
+            <article class="producto-carrito">
+              <div>
+                <strong>${escapar(item.nombre || 'Producto')}</strong>
+                <p>Este producto ya no está disponible.</p>
+              </div>
+              <button class="btn-eliminar"
+                      data-accion="eliminar"
+                      data-id="${escapar(item.id)}">
+                Eliminar
+              </button>
+            </article>
+          `;
+        }
+
+        const cantidad = Number(item.cantidad);
+        const stock = Number(producto.stock);
+        const precio = Number(producto.precio);
+
+        if (!Number.isInteger(cantidad) || cantidad < 1 || cantidad > stock) {
+          carritoValido = false;
+        }
+
+        return `
+          <article class="producto-carrito">
+            <img src="${escapar(producto.imagen || 'logo.png')}"
+                 alt="${escapar(producto.nombre)}"
+                 onerror="this.src='logo.png'">
+
+            <div>
+              <h3>${escapar(producto.nombre)}</h3>
+              <p>Precio: ${formatoPesos(precio)}</p>
+              <p>Disponibles: ${stock}</p>
+
+              <div class="cantidad-controles">
+                <button data-accion="restar"
+                        data-id="${escapar(item.id)}"
+                        ${cantidad <= 1 ? 'disabled' : ''}>−</button>
+
+                <strong>${cantidad}</strong>
+
+                <button data-accion="sumar"
+                        data-id="${escapar(item.id)}"
+                        ${cantidad >= stock ? 'disabled' : ''}>+</button>
+
+                <button class="btn-eliminar"
+                        data-accion="eliminar"
+                        data-id="${escapar(item.id)}">
+                  Eliminar
+                </button>
+              </div>
+            </div>
+
+            <div class="producto-precio">
+              <strong>${formatoPesos(precio * cantidad)}</strong>
+            </div>
+          </article>
+        `;
+      }).join('');
+
+      resumen.hidden = false;
+      totalElemento.textContent = formatoPesos(obtenerTotal());
+      seccionConfirmacion.hidden = false;
+
+      botonConfirmar.disabled = !carritoValido || !usuarioActual;
+
+      if (!carritoValido) {
+        mostrarMensaje(
+          'Revisa las existencias de los productos antes de continuar.',
+          'error'
+        );
+      } else {
+        mensajePedido.className = 'mensaje';
+      }
+
+      if (!usuarioActual) {
+        mensajeLogin.hidden = false;
+        botonConfirmar.disabled = true;
+      } else {
+        mensajeLogin.hidden = true;
+      }
+    }
+
+    listaProductos.addEventListener('click', event => {
+      const boton = event.target.closest('button[data-accion]');
+      if (!boton) return;
+
+      const id = boton.dataset.id;
+      const accion = boton.dataset.accion;
+      const item = carrito.find(producto => String(producto.id) === id);
+
+      if (!item) return;
+
+      const producto = productosActuales.get(id);
+
+      if (accion === 'eliminar') {
+        carrito = carrito.filter(
+          producto => String(producto.id) !== id
+        );
+      }
+
+      if (accion === 'sumar' && producto &&
+          Number(item.cantidad) < Number(producto.stock)) {
+        item.cantidad = Number(item.cantidad) + 1;
+      }
+
+      if (accion === 'restar' && Number(item.cantidad) > 1) {
+        item.cantidad = Number(item.cantidad) - 1;
+      }
+
+      guardarCarrito();
+      renderizarCarrito();
+    });
+
+    function actualizarTipoEntrega() {
+      const tipo = document.querySelector(
+        'input[name="tipo_entrega"]:checked'
+      ).value;
+
+      const esDomicilio = tipo === 'domicilio';
+
+      document.getElementById('datos-domicilio').hidden = !esDomicilio;
+      document.getElementById('direccion').required = esDomicilio;
+      document.getElementById('barrio').required = esDomicilio;
+
+      document.getElementById('texto-pago').textContent = esDomicilio
+        ? 'Pagarás en efectivo cuando recibas tu pedido.'
+        : 'Pagarás en efectivo cuando recojas tu pedido en el establecimiento.';
+    }
+
+    document.querySelectorAll('input[name="tipo_entrega"]').forEach(radio => {
+      radio.addEventListener('change', actualizarTipoEntrega);
+    });
+
+    async function iniciar() {
+      const { data, error } = await supabase.auth.getSession();
+
+      if (error) {
+        console.error(error);
+      }
+
+      usuarioActual = data?.session?.user || null;
+
+      if (usuarioActual) {
+        const nombreGuardado =
+          usuarioActual.user_metadata?.full_name || '';
+
+        document.getElementById('nombre').value = nombreGuardado;
+      }
+
+      await cargarProductos();
+      actualizarTipoEntrega();
+    }
+
+    formulario.addEventListener('submit', async event => {
+      event.preventDefault();
+
+      if (!usuarioActual) {
+        mostrarMensaje(
+          'Debes iniciar sesión para confirmar tu pedido.',
+          'error'
+        );
+        return;
+      }
+
+      if (carrito.length === 0 || !carritoValido) {
+        mostrarMensaje(
+          'Revisa tu carrito y las existencias antes de continuar.',
+          'error'
+        );
+        return;
+      }
+
+      const nombre = document.getElementById('nombre').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+      const direccion = document.getElementById('direccion').value.trim();
+      const barrio = document.getElementById('barrio').value.trim();
+      const indicaciones = document.getElementById('indicaciones').value.trim();
+
+      const tipoEntrega = document.querySelector(
+        'input[name="tipo_entrega"]:checked'
+      ).value;
+
+      if (nombre.length < 2 || telefono.length < 7) {
+        mostrarMensaje(
+          'Escribe un nombre y un teléfono válidos.',
+          'error'
+        );
+        return;
+      }
+
+      if (tipoEntrega === 'domicilio' && (!direccion || !barrio)) {
+        mostrarMensaje(
+          'Para el domicilio debes completar la dirección y el barrio.',
+          'error'
+        );
+        return;
+      }
+
+      const productosPedido = carrito.map(item => ({
+        id: String(item.id),
+        cantidad: Number(item.cantidad)
+      }));
+
+      const metodoPago = tipoEntrega === 'domicilio'
+        ? 'efectivo_al_recibir'
+        : 'efectivo_al_recoger';
+
+      botonConfirmar.disabled = true;
+      botonConfirmar.textContent = 'REGISTRANDO PEDIDO...';
+      mensajePedido.className = 'mensaje';
+
+      try {
+        const { data: pedidoId, error } = await supabase.rpc(
+          'crear_pedido',
+          {
+            p_nombre_cliente: nombre,
+            p_telefono: telefono,
+            p_direccion: tipoEntrega === 'domicilio' ? direccion : null,
+            p_barrio: tipoEntrega === 'domicilio' ? barrio : null,
+            p_indicaciones: indicaciones || null,
+            p_tipo_entrega: tipoEntrega,
+            p_metodo_pago: metodoPago,
+            p_productos: productosPedido
+          }
+        );
+
+        if (error) throw error;
+
+        localStorage.removeItem(CLAVE_CARRITO);
+        carrito = [];
+
+        formulario.reset();
+
+        seccionConfirmacion.hidden = true;
+        document.getElementById('confirmacion-final').hidden = false;
+        document.getElementById('numero-pedido').textContent =
+          'Número de pedido: ' + pedidoId;
+
+        listaProductos.innerHTML = `
+          <div class="carrito-vacio">
+            <h3>Pedido registrado correctamente</h3>
+          </div>
+        `;
+
+        resumen.hidden = true;
+
+      } catch (error) {
+        console.error('Error al registrar pedido:', error);
+
+        mostrarMensaje(
+          error.message ||
+          'No fue posible registrar el pedido. Intenta nuevamente.',
+          'error'
+        );
+
+        botonConfirmar.disabled = false;
+        botonConfirmar.textContent = 'CONFIRMAR MI PEDIDO';
+      }
+    });
+
+    supabase.auth.onAuthStateChange((_evento, session) => {
+      usuarioActual = session?.user || null;
+      renderizarCarrito();
+    });
+
+    iniciar();
+  </script>
+
+</body>
+</html>

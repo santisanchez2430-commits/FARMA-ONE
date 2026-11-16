@@ -1,90 +1,591 @@
+
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+
     <title>FarmaOne - Mi Cuenta</title>
-  </head>
-  <body>
+
+    <style>
+        .cuenta-seccion {
+            background: #ffffff;
+            min-height: calc(100vh - 60px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .cuenta-contenedor {
+            background: #f4f8fb;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .cuenta-contenedor h2 {
+            text-align: center;
+            color: #333;
+            margin-top: 0;
+        }
+
+        .campo-cuenta {
+            margin-bottom: 18px;
+        }
+
+        .campo-cuenta label {
+            display: block;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 6px;
+        }
+
+        .campo-cuenta input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        .password-contenedor {
+            position: relative;
+            display: flex;
+        }
+
+        .password-contenedor input {
+            padding-right: 45px;
+        }
+
+        .btn-ver-pass {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .btn-ingresar,
+        .btn-cerrar-sesion {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.05rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-ingresar {
+            background: #0995d6;
+            color: white;
+        }
+
+        .btn-cerrar-sesion {
+            background: #e74c3c;
+            color: white;
+            margin-top: 15px;
+        }
+
+        .btn-ingresar:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .cuenta-mensaje {
+            text-align: center;
+            margin-top: 15px;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .cuenta-enlaces {
+            text-align: center;
+            margin-top: 20px;
+            color: #555;
+        }
+
+        .cuenta-enlaces a {
+            color: #0995d6;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .recuperar {
+            display: block;
+            text-align: right;
+            margin-top: 10px;
+            color: #0995d6;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        @media(max-width: 480px) {
+            .cuenta-contenedor {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ENCABEZADO -->
     <header class="navbar">
-      <a class="brand" href="index.html"><span>FarmaOne</span></a>
-      <button class="menu-toggle" id="btn-menu" aria-label="Abrir menú">&#9776;</button>
+
+        <a class="brand" href="index.html">
+            <span>FarmaOne</span>
+        </a>
+
+        <button class="menu-toggle" id="btn-menu" aria-label="Abrir menú">
+            &#9776;
+        </button>
+
     </header>
 
+    <!-- NAVEGACIÓN -->
     <nav class="menu" id="nav-menu">
-      <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li>
-          <details>
-            <summary style="cursor: pointer; color: #0995d6; font-weight: bold; font-size: 1.1rem;">Categorías ▼</summary>
-            <ul style="list-style: none; padding-top: 10px; text-align: center;">
-              <li style="margin-bottom: 10px;"><a href="medicamentos.html">Medicamentos</a></li>
-              <li style="margin-bottom: 10px;"><a href="suplementos.html">Suplementos y Vitaminas</a></li>
-              <li style="margin-bottom: 10px;"><a href="equipos.html">Equipos Médicos</a></li>
-            </ul>
-          </details>
-        </li>
-        <li><a href="cuidado-personal.html">Cuidado Personal</a></li>
-        <li><a href="ofertas.html">Ofertas del Mes</a></li>
-        <li><a href="carrito.html">Carrito (0) 🛒</a></li>
-        <li><a href="cuenta.html">Mi Cuenta / Registro</a></li>
-      </ul>
+
+        <ul>
+
+            <li><a href="index.html">Inicio</a></li>
+
+            <li><a href="catalogo.html">Catálogo</a></li>
+
+            <li>
+                <details>
+                    <summary style="cursor:pointer; color:#0995d6; font-weight:bold; font-size:1.1rem;">
+                        Categorías ▼
+                    </summary>
+
+                    <ul style="list-style:none; padding-top:10px; text-align:center;">
+
+                        <li style="margin-bottom:10px;">
+                            <a href="medicamentos.html">Medicamentos</a>
+                        </li>
+
+                        <li style="margin-bottom:10px;">
+                            <a href="suplementos.html">Suplementos y Vitaminas</a>
+                        </li>
+
+                        <li style="margin-bottom:10px;">
+                            <a href="equipos.html">Equipos Médicos</a>
+                        </li>
+
+                    </ul>
+                </details>
+            </li>
+
+            <li><a href="cuidado-personal.html">Cuidado Personal</a></li>
+            <li><a href="ofertas.html">Ofertas del Mes</a></li>
+            <li><a href="carrito.html">Carrito 🛒</a></li>
+            <li><a href="cuenta.html">Mi Cuenta</a></li>
+
+        </ul>
+
     </nav>
 
-    <section id="login" style="background-color: #ffffff; min-height: calc(100vh - 60px); display: flex; justify-content: center; align-items: center;">
-      <div style="background-color: #f4f8fb; padding: 40px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; max-width: 400px;">
-        <h2 style="text-align: center; color: #333; margin-top: 0;">Iniciar Sesión</h2>
-        
-        <form action="#" method="post" style="display: flex; flex-direction: column; gap: 20px; margin-top: 20px;">
-          <div style="text-align: left;">
-            <label for="usuario" style="font-weight: bold; color: #333; display: block; margin-bottom: 5px;">Correo Electrónico:</label>
-            <input type="email" id="usuario" name="usuario" placeholder="Ej: juan@correo.com" required 
-                   style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 1rem;">
-          </div>
-          
-          <!-- Campo de contraseña con botón de ver/ocultar -->
-          <div style="text-align: left;">
-            <label for="contrasena" style="font-weight: bold; color: #333; display: block; margin-bottom: 5px;">Contraseña:</label>
-            <div style="display: flex; position: relative;">
-              <input type="password" id="contrasena" name="contrasena" placeholder="********" required 
-                     style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 1rem;">
-              <button type="button" id="btn-ver-pass" onclick="togglePassword()" 
-                      style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 1.2rem;">
-                👁️
-              </button>
+    <!-- CONTENIDO DE LA CUENTA -->
+    <section class="cuenta-seccion">
+
+        <div class="cuenta-contenedor">
+
+            <!-- FORMULARIO DE INGRESO -->
+            <div id="formulario-login">
+
+                <h2>Iniciar Sesión</h2>
+
+                <p style="text-align:center; color:#666;">
+                    Accede a tu cuenta de FarmaOne.
+                </p>
+
+                <form id="form-login">
+
+                    <div class="campo-cuenta">
+
+                        <label for="usuario">
+                            Correo electrónico:
+                        </label>
+
+                        <input
+                            type="email"
+                            id="usuario"
+                            name="usuario"
+                            placeholder="Ej: usuario@correo.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="campo-cuenta">
+
+                        <label for="contrasena">
+                            Contraseña:
+                        </label>
+
+                        <div class="password-contenedor">
+
+                            <input
+                                type="password"
+                                id="contrasena"
+                                name="contrasena"
+                                placeholder="Tu contraseña"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="btn-ver-pass"
+                                id="btn-ver-pass"
+                                aria-label="Mostrar contraseña"
+                            >
+                                👁️
+                            </button>
+
+                        </div>
+
+                        <a href="#" class="recuperar" id="recuperar-pass">
+                            ¿Olvidaste tu contraseña?
+                        </a>
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="btn-ingresar"
+                        id="btn-ingresar"
+                    >
+                        Ingresar
+                    </button>
+
+                </form>
+
+                <p
+                    id="mensaje-login"
+                    class="cuenta-mensaje"
+                    role="status"
+                    aria-live="polite"
+                ></p>
+
+                <div class="cuenta-enlaces">
+
+                    ¿Aún no tienes una cuenta?
+
+                    <br><br>
+
+                    <a href="registro.html">
+                        Regístrate aquí
+                    </a>
+
+                </div>
+
             </div>
-          </div>
 
-          <button type="submit" style="background-color: #0995d6; color: white; padding: 12px; border: none; border-radius: 5px; font-size: 1.1rem; cursor: pointer; font-weight: bold;">
-            Ingresar
-          </button>
-        </form>
+            <!-- PANEL DE USUARIO -->
+            <div id="panel-usuario" hidden>
 
-        <p style="text-align: center; margin-top: 25px; font-size: 0.95rem; color: #555;">
-          ¿Aún no tienes una cuenta? <br><br>
-          <a href="registro.html" style="color: #0995d6; font-weight: bold; text-decoration: none;">Regístrate aquí</a>
-        </p>
-      </div>
+                <h2>Mi Cuenta</h2>
+
+                <p style="text-align:center; color:#16834a;">
+                    ¡Has iniciado sesión correctamente!
+                </p>
+
+                <p id="nombre-usuario" style="text-align:center;"></p>
+
+                <p id="correo-usuario" style="text-align:center; color:#666;"></p>
+
+                <button
+                    type="button"
+                    class="btn-cerrar-sesion"
+                    id="btn-cerrar-sesion"
+                >
+                    Cerrar sesión
+                </button>
+
+            </div>
+
+        </div>
+
     </section>
 
+    <!-- PIE DE PÁGINA -->
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <div class="footer-col">
+                <h3>FarmaOne</h3>
+                <p>Tu farmacia en línea de confianza.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Enlaces Rápidos</h4>
+
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li><a href="carrito.html">Carrito</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <p>📧 Soporte: contacto@farmaone.com</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            &copy; 2026 FarmaOne. Todos los derechos reservados.
+        </div>
+
+    </footer>
+
+    <!-- MENÚ RESPONSIVE -->
     <script>
-      const btn = document.getElementById('btn-menu');
-      const menu = document.getElementById('nav-menu');
 
-      btn.addEventListener('click', () => {
-        menu.classList.toggle('active');
-      });
+        const btnMenu = document.getElementById('btn-menu');
+        const menu = document.getElementById('nav-menu');
 
-      // Función para alternar la visibilidad de la contraseña
-      function togglePassword() {
-        const inputPass = document.getElementById('contrasena');
-        if (inputPass.type === 'password') {
-          inputPass.type = 'text';
-        } else {
-          inputPass.type = 'password';
-        }
-      }
+        btnMenu.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+
     </script>
-  </body>
+
+    <!-- SUPABASE AUTH -->
+    <script type="module">
+
+        import { supabase } from './supabase.js';
+
+        const formulario = document.getElementById('form-login');
+        const formularioLogin = document.getElementById('formulario-login');
+        const panelUsuario = document.getElementById('panel-usuario');
+
+        const mensaje = document.getElementById('mensaje-login');
+        const botonIngresar = document.getElementById('btn-ingresar');
+
+        // Mostrar u ocultar contraseña
+        document.getElementById('btn-ver-pass').addEventListener('click', () => {
+
+            const campo = document.getElementById('contrasena');
+            const boton = document.getElementById('btn-ver-pass');
+
+            if (campo.type === 'password') {
+                campo.type = 'text';
+                boton.textContent = '🙈';
+                boton.setAttribute('aria-label', 'Ocultar contraseña');
+            } else {
+                campo.type = 'password';
+                boton.textContent = '👁️';
+                boton.setAttribute('aria-label', 'Mostrar contraseña');
+            }
+
+        });
+
+        // Mostrar panel de usuario
+        function mostrarUsuario(usuario) {
+
+            formularioLogin.hidden = true;
+            panelUsuario.hidden = false;
+
+            const nombre = usuario.user_metadata?.full_name || 'Usuario de FarmaOne';
+
+            document.getElementById('nombre-usuario').textContent =
+                'Bienvenido, ' + nombre;
+
+            document.getElementById('correo-usuario').textContent =
+                usuario.email || '';
+
+        }
+
+        // Mostrar formulario
+        function mostrarLogin() {
+
+            formularioLogin.hidden = false;
+            panelUsuario.hidden = true;
+
+        }
+
+        // Comprobar sesión existente
+        async function comprobarSesion() {
+
+            const { data, error } = await supabase.auth.getSession();
+
+            if (error) {
+                console.error(error);
+                return;
+            }
+
+            if (data.session) {
+                mostrarUsuario(data.session.user);
+            } else {
+                mostrarLogin();
+            }
+
+        }
+
+        // Iniciar sesión
+        formulario.addEventListener('submit', async (evento) => {
+
+            evento.preventDefault();
+
+            const correo = document.getElementById('usuario').value.trim();
+            const password = document.getElementById('contrasena').value;
+
+            botonIngresar.disabled = true;
+            botonIngresar.textContent = 'Ingresando...';
+
+            mensaje.style.color = '#555';
+            mensaje.textContent = 'Verificando información...';
+
+            try {
+
+                const { data, error } = await supabase.auth.signInWithPassword({
+
+                    email: correo,
+                    password: password
+
+                });
+
+                if (error) {
+                    throw error;
+                }
+
+                mensaje.style.color = '#16834a';
+                mensaje.textContent = 'Inicio de sesión exitoso.';
+
+                mostrarUsuario(data.user);
+
+            } catch (error) {
+
+                console.error('Error de inicio de sesión:', error);
+
+                mensaje.style.color = '#c0392b';
+                mensaje.textContent =
+                    'No se pudo iniciar sesión. Verifica tu correo y contraseña o confirma tu correo electrónico.';
+
+            } finally {
+
+                botonIngresar.disabled = false;
+                botonIngresar.textContent = 'Ingresar';
+
+            }
+
+        });
+
+        // Recuperación de contraseña
+        document.getElementById('recuperar-pass').addEventListener('click', async (evento) => {
+
+            evento.preventDefault();
+
+            const correo = document.getElementById('usuario').value.trim();
+
+            if (!correo) {
+                mensaje.style.color = '#c0392b';
+                mensaje.textContent =
+                    'Primero escribe tu correo electrónico.';
+                return;
+            }
+
+            mensaje.style.color = '#555';
+            mensaje.textContent = 'Enviando solicitud...';
+
+            try {
+
+                const { error } = await supabase.auth.resetPasswordForEmail(
+                    correo,
+                    {
+                        redirectTo: window.location.origin +
+                            window.location.pathname
+                    }
+                );
+
+                if (error) {
+                    throw error;
+                }
+
+                mensaje.style.color = '#16834a';
+                mensaje.textContent =
+                    'Si el correo está registrado, recibirás instrucciones para recuperar tu contraseña. Revisa también el correo no deseado.';
+
+            } catch (error) {
+
+                console.error(error);
+
+                mensaje.style.color = '#c0392b';
+                mensaje.textContent =
+                    'No se pudo enviar la solicitud: ' + error.message;
+
+            }
+
+        });
+
+        // Cerrar sesión
+        document.getElementById('btn-cerrar-sesion').addEventListener('click', async () => {
+
+            const boton = document.getElementById('btn-cerrar-sesion');
+
+            boton.disabled = true;
+            boton.textContent = 'Cerrando sesión...';
+
+            try {
+
+                const { error } = await supabase.auth.signOut();
+
+                if (error) {
+                    throw error;
+                }
+
+                mostrarLogin();
+
+                mensaje.style.color = '#16834a';
+                mensaje.textContent = 'Sesión cerrada correctamente.';
+
+                formulario.reset();
+
+            } catch (error) {
+
+                console.error(error);
+
+                boton.textContent = 'Cerrar sesión';
+
+                alert('No se pudo cerrar la sesión: ' + error.message);
+
+            } finally {
+
+                boton.disabled = false;
+
+            }
+
+        });
+
+        // Escuchar cambios de autenticación
+        supabase.auth.onAuthStateChange((evento, session) => {
+
+            if (session) {
+                mostrarUsuario(session.user);
+            } else {
+                mostrarLogin();
+            }
+
+        });
+
+        comprobarSesion();
+
+    </script>
+
+</body>
 </html>
