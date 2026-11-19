@@ -1,161 +1,170 @@
+
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css">
-    <title>FarmaOne - Tu Farmacia en Línea</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <title>FarmaOne - Tu Farmacia en Línea</title>
+</head>
 
-  <script type="module" src="supabase.js"></script>
+<body>
 
-  <body>
-    <!-- BARRA DE NAVEGACIÓN (LOGOTIPO GRANDE + BÚSQUEDA + ACCESO A CUENTA) -->
-    <header class="navbar">
-      <!-- Logo más grande y legible -->
-      <a class="brand" href="index.html">
-        <img src="logo.png" alt="FarmaOne Logo" class="logo-img">
-        <span>FarmaOne</span>
+  <header class="navbar">
+    <a class="brand" href="index.html">
+      <img src="logo.png" alt="FarmaOne Logo" class="logo-img">
+      <span>FarmaOne</span>
+    </a>
+
+    <div class="search-bar-container">
+      <input type="text" placeholder="Buscar medicamentos, vitaminas..." class="search-input" disabled>
+      <button type="button" class="search-btn">🔍</button>
+    </div>
+
+    <div class="nav-actions">
+      <a href="cuenta.html" class="user-icon-link" title="Mi Cuenta / Registro">
+        👤 <span class="user-text">Mi Cuenta</span>
       </a>
+      <button class="menu-toggle" id="btn-menu" aria-label="Abrir menú">&#9776;</button>
+    </div>
+  </header>
 
-      <!-- Barra de búsqueda simulada al lado del título -->
-      <div class="search-bar-container">
-        <input type="text" placeholder="Buscar medicamentos, vitaminas..." class="search-input" disabled>
-        <button type="button" class="search-btn">🔍</button>
-      </div>
+  <nav class="menu" id="nav-menu">
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="catalogo.html" style="color: #0995d6; font-weight: bold;">Catálogo</a></li>
 
-      <!-- Icono de usuario para ir a cuenta/registro -->
-      <div class="nav-actions">
-        <a href="cuenta.html" class="user-icon-link" title="Mi Cuenta / Registro">
-          👤 <span class="user-text">Mi Cuenta</span>
-        </a>
-        <button class="menu-toggle" id="btn-menu" aria-label="Abrir menú">&#9776;</button>
-      </div>
-    </header>
+      <li>
+        <a href="admin.html" id="enlaceAdmin" hidden>Administración</a>
+      </li>
 
-    <!-- MENÚ DESPLEGABLE (Con la nueva opción de Catálogo integrada) -->
-    <nav class="menu" id="nav-menu">
-      <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="catalogo.html" style="color: #0995d6; font-weight: bold;">Catálogo </a></li>
-       <li><a href="admin.html" id="enlaceAdmin" hidden>
-  Administración
-</a></li>
-        <li>
-          <details>
-            <summary style="cursor: pointer; color: #0995d6; font-weight: bold; font-size: 1.1rem;">Categorías ▼</summary>
-            <ul style="list-style: none; padding-top: 10px; text-align: center;">
-              <li style="margin-bottom: 10px;"><a href="medicamentos.html">Medicamentos (15)</a></li>
-              <li style="margin-bottom: 10px;"><a href="suplementos.html">Suplementos y Vitaminas (5)</a></li>
-              <li style="margin-bottom: 10px;"><a href="equipos.html">Equipos Médicos (10)</a></li>
-            </ul>
-          </details>
-        </li>
-        <li><a href="cuidado-personal.html">Cuidado Personal</a></li>
-        <li><a href="ofertas.html">Ofertas del Mes</a></li>
-        <li><a href="carrito.html">Carrito (0) 🛒</a></li>
-        <li><a href="cuenta.html">Mi Cuenta</a></li>
-        <li><a href="registro.html">Regístrate</a></li>
-      </ul>
-    </nav>
+      <li>
+        <details>
+          <summary style="cursor: pointer; color: #0995d6; font-weight: bold; font-size: 1.1rem;">Categorías ▼</summary>
+          <ul style="list-style: none; padding-top: 10px; text-align: center;">
+            <li style="margin-bottom: 10px;"><a href="medicamentos.html">Medicamentos (15)</a></li>
+            <li style="margin-bottom: 10px;"><a href="suplementos.html">Suplementos y Vitaminas (5)</a></li>
+            <li style="margin-bottom: 10px;"><a href="equipos.html">Equipos Médicos (10)</a></li>
+          </ul>
+        </details>
+      </li>
 
-    <!-- SECCIÓN DE BIENVENIDA Y ESLOGAN -->
-    <section class="hero-section">
-      <h1>Bienvenido a FarmaOne</h1>
-      <p class="hero-slogan">
-        Tu bienestar en buenas manos, con la rapidez que mereces.
+      <li><a href="cuidado-personal.html">Cuidado Personal</a></li>
+      <li><a href="ofertas.html">Ofertas del Mes</a></li>
+      <li><a href="carrito.html">Carrito (0) 🛒</a></li>
+      <li><a href="cuenta.html">Mi Cuenta</a></li>
+      <li><a href="registro.html">Regístrate</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero-section">
+    <h1>Bienvenido a FarmaOne</h1>
+    <p class="hero-slogan">
+      Tu bienestar en buenas manos, con la rapidez que mereces.
+    </p>
+  </section>
+
+  <div class="full-width-banner">
+    <img src="banner-farma.png" alt="FarmaOne Farmacia en Línea">
+  </div>
+
+  <main style="padding: 40px 20px; max-width: 800px; margin: 0 auto; line-height: 1.7; color: #444;">
+
+    <section style="margin-bottom: 40px; text-align: center;">
+      <h2 style="color: #333; font-size: 1.8rem; margin-bottom: 15px;">¿Qué ofrecemos en FarmaOne?</h2>
+      <p style="font-size: 1.05rem; color: #555;">
+        En FarmaOne nos dedicamos a ofrecerte la mejor experiencia en pedidos de productos farmacéuticos, suplementos vitamínicos y equipos médicos esenciales. Nuestro objetivo es facilitar tu día a día, asegurándonos de que recibas tus productos de manera rápida, confiable y segura directamente en la puerta de tu hogar.
       </p>
     </section>
 
-    <!-- BANNER DE BORDE A BORDE -->
-    <div class="full-width-banner">
-      <img src="banner-farma.png" alt="FarmaOne Farmacia en Línea">
+    <section style="margin-bottom: 40px;">
+      <h2 style="color: #2c3e50; border-bottom: 2px solid #0995d6; padding-bottom: 8px;">Nuestra Historia</h2>
+      <p style="margin-top: 15px;">
+        FarmaOne nació con la firme convicción de transformar el acceso a la salud y al bienestar en el hogar. Comprendimos que las familias necesitan una alternativa rápida, confiable y cercana a los servicios farmacéuticos tradicionales, eliminando largas filas y optimizando la entrega de medicamentos esenciales.
+      </p>
+    </section>
+
+    <section style="margin-bottom: 40px;">
+      <h2 style="color: #2c3e50; border-bottom: 2px solid #0995d6; padding-bottom: 8px;">Nuestra Misión y Visión</h2>
+      <p style="margin-top: 15px;">
+        <strong>Misión:</strong> Proveer productos farmacéuticos y de cuidado de la salud de la más alta calidad con un servicio ágil, transparente y enfocado en el bienestar de cada cliente.
+      </p>
+      <p style="margin-top: 10px;">
+        <strong>Visión:</strong> Ser la farmacia en línea líder a nivel nacional, reconocida por nuestra innovación constante, calidez humana y compromiso absoluto con la salud de la comunidad.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+
+      <div class="footer-col">
+        <h3>FarmaOne</h3>
+        <p>Tu farmacia en línea de confianza. Brindando salud, bienestar y rapidez en cada pedido para ti y tu familia.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Enlaces Rápidos</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="cuenta.html">Mi Cuenta</a></li>
+          <li><a href="registro.html">Regístrate</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <p>📧 Soporte: contacto@farmaone.com</p>
+        <p>📞 Teléfono: +123 456 7890</p>
+      </div>
+
     </div>
 
-    <!-- SECCIÓN DE INFORMACIÓN E HISTORIA -->
-    <main style="padding: 40px 20px; max-width: 800px; margin: 0 auto; line-height: 1.7; color: #444;">
-      <section style="margin-bottom: 40px; text-align: center;">
-        <h2 style="color: #333; font-size: 1.8rem; margin-bottom: 15px;">¿Qué ofrecemos en FarmaOne?</h2>
-        <p style="font-size: 1.05rem; color: #555;">
-          En FarmaOne nos dedicamos a ofrecerte la mejor experiencia en pedidos de productos farmacéuticos, suplementos vitamínicos y equipos médicos esenciales. Nuestro objetivo es facilitar tu día a día, asegurándonos de que recibas tus productos de manera rápida, confiable y segura directamente en la puerta de tu hogar.
-        </p>
-      </section>
+    <div class="footer-bottom">
+      &copy; 2026 FarmaOne. Todos los derechos reservados.
+    </div>
+  </footer>
 
-      <section style="margin-bottom: 40px;">
-        <h2 style="color: #2c3e50; border-bottom: 2px solid #0995d6; padding-bottom: 8px;">Nuestra Historia</h2>
-        <p style="margin-top: 15px;">
-          FarmaOne nació con la firme convicción de transformar el acceso a la salud y al bienestar en el hogar. Comprendimos que las familias necesitan una alternativa rápida, confiable y cercana a los servicios farmacéuticos tradicionales, eliminando largas filas y optimizando la entrega de medicamentos esenciales.
-        </p>
-      </section>
+  <!-- MENÚ MÓVIL -->
+  <script>
+    const btn = document.getElementById('btn-menu');
+    const menu = document.getElementById('nav-menu');
 
-      <section style="margin-bottom: 40px;">
-        <h2 style="color: #2c3e50; border-bottom: 2px solid #0995d6; padding-bottom: 8px;">Nuestra Misión y Visión</h2>
-        <p style="margin-top: 15px;">
-          <strong>Misión:</strong> Proveer productos farmacéuticos y de cuidado de la salud de la más alta calidad con un servicio ágil, transparente y enfocado en el bienestar de cada cliente.
-        </p>
-        <p style="margin-top: 10px;">
-          <strong>Visión:</strong> Ser la farmacia en línea líder a nivel nacional, reconocida por nuestra innovación constante, calidez humana y compromiso absoluto con la salud de la comunidad.
-        </p>
-      </section>
-    </main>
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
+  </script>
 
-    <!-- FOOTER -->
-    <footer class="site-footer">
-      <div class="footer-container">
-        
-        <div class="footer-col">
-          <h3>FarmaOne</h3>
-          <p>Tu farmacia en línea de confianza. Brindando salud, bienestar y rapidez en cada pedido para ti y tu familia.</p>
-        </div>
+  <!-- VERIFICACIÓN DEL ADMINISTRADOR -->
+  <script type="module">
+    import { supabase } from './supabase.js';
 
-        <div class="footer-col">
-          <h4>Enlaces Rápidos</h4>
-          <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="catalogo.html">Catálogo</a></li>
-            <li><a href="cuenta.html">Mi Cuenta</a></li>
-            <li><a href="registro.html">Regístrate</a></li>
-          </ul>
-        </div>
+    const enlaceAdmin = document.getElementById('enlaceAdmin');
 
-        <div class="footer-col">
-          <h4>Contacto</h4>
-          <p>📧 Soporte: contacto@farmaone.com</p>
-          <p>📞 Teléfono: +123 456 7890</p>
-        </div>
+    function actualizarEnlaceAdmin(session) {
+      enlaceAdmin.hidden =
+        session?.user?.app_metadata?.role !== 'admin';
+    }
 
-      </div>
+    async function verificarSesion() {
+      const { data, error } = await supabase.auth.getSession();
 
-      <div class="footer-bottom">
-        &copy; 2026 FarmaOne. Todos los derechos reservados.
-      </div>
-    </footer>
+      if (error) {
+        console.error('Error verificando sesión:', error);
+        return;
+      }
 
-    <!-- SCRIPT PARA EL MENÚ MÓVIL -->
-    <script>
-      const btn = document.getElementById('btn-menu');
-      const menu = document.getElementById('nav-menu');
+      actualizarEnlaceAdmin(data.session);
+    }
 
-      btn.addEventListener('click', () => {
-        menu.classList.toggle('active');
-      });
+    verificarSesion();
 
-      import { supabase } from './supabase.js';
+    supabase.auth.onAuthStateChange((evento, session) => {
+      actualizarEnlaceAdmin(session);
+    });
+  </script>
 
-  const enlaceAdmin = document.getElementById('enlaceAdmin');
-
-  async function verificarAdministrador() {
-    const { data: { session } } = await supabase.auth.getSession();
-
-    enlaceAdmin.hidden =
-      session?.user?.app_metadata?.role !== 'admin';
-  }
-
-  verificarAdministrador();
-
-  supabase.auth.onAuthStateChange(() => {
-    verificarAdministrador();
-  });
-    </script>
-  </body>
+</body>
 </html>

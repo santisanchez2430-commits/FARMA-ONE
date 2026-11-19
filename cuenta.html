@@ -3,609 +3,552 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 
-    <title>FarmaOne - Mi Cuenta</title>
+  <title>FarmaOne - Mi Cuenta</title>
 
-    <style>
-        .cuenta-seccion {
-            background: #ffffff;
-            min-height: calc(100vh - 60px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-        }
+  <style>
+    .cuenta-seccion {
+      background: #ffffff;
+      min-height: calc(100vh - 60px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
 
-        .cuenta-contenedor {
-            background: #f4f8fb;
-            padding: 35px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 420px;
-        }
+    .cuenta-contenedor {
+      background: #f4f8fb;
+      padding: 35px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 420px;
+    }
 
-        .cuenta-contenedor h2 {
-            text-align: center;
-            color: #333;
-            margin-top: 0;
-        }
+    .cuenta-contenedor h2 {
+      text-align: center;
+      color: #333;
+      margin-top: 0;
+    }
 
-        .campo-cuenta {
-            margin-bottom: 18px;
-        }
+    .campo-cuenta {
+      margin-bottom: 18px;
+    }
 
-        .campo-cuenta label {
-            display: block;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 6px;
-        }
+    .campo-cuenta label {
+      display: block;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 6px;
+    }
 
-        .campo-cuenta input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-            font-size: 1rem;
-        }
+    .campo-cuenta input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
 
-        .password-contenedor {
-            position: relative;
-            display: flex;
-        }
+    .password-contenedor {
+      position: relative;
+      display: flex;
+    }
 
-        .password-contenedor input {
-            padding-right: 45px;
-        }
+    .password-contenedor input {
+      padding-right: 45px;
+    }
 
-        .btn-ver-pass {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
+    .btn-ver-pass {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
 
-        .btn-ingresar,
-        .btn-cerrar-sesion {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.05rem;
-            font-weight: bold;
-            cursor: pointer;
-        }
+    .btn-ingresar,
+    .btn-cerrar-sesion {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.05rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-        .btn-ingresar {
-            background: #0995d6;
-            color: white;
-        }
+    .btn-ingresar {
+      background: #0995d6;
+      color: white;
+    }
 
-        .btn-cerrar-sesion {
-            background: #e74c3c;
-            color: white;
-            margin-top: 15px;
-        }
+    .btn-cerrar-sesion {
+      background: #e74c3c;
+      color: white;
+      margin-top: 15px;
+    }
 
-        .btn-ingresar:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
+    .btn-ingresar:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
 
-        .cuenta-mensaje {
-            text-align: center;
-            margin-top: 15px;
-            line-height: 1.5;
-            font-size: 0.95rem;
-        }
+    .cuenta-mensaje {
+      text-align: center;
+      margin-top: 15px;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
 
-        .cuenta-enlaces {
-            text-align: center;
-            margin-top: 20px;
-            color: #555;
-        }
+    .cuenta-enlaces {
+      text-align: center;
+      margin-top: 20px;
+      color: #555;
+    }
 
-        .cuenta-enlaces a {
-            color: #0995d6;
-            font-weight: bold;
-            text-decoration: none;
-        }
+    .cuenta-enlaces a {
+      color: #0995d6;
+      font-weight: bold;
+      text-decoration: none;
+    }
 
-        .recuperar {
-            display: block;
-            text-align: right;
-            margin-top: 10px;
-            color: #0995d6;
-            font-size: 0.9rem;
-            cursor: pointer;
-            text-decoration: none;
-        }
+    .recuperar {
+      display: block;
+      text-align: right;
+      margin-top: 10px;
+      color: #0995d6;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
 
-        @media(max-width: 480px) {
-            .cuenta-contenedor {
-                padding: 25px 20px;
-            }
-        }
-    </style>
+    @media(max-width: 480px) {
+      .cuenta-contenedor {
+        padding: 25px 20px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <!-- ENCABEZADO -->
-    <header class="navbar">
+  <header class="navbar">
+    <a class="brand" href="index.html">
+      <span>FarmaOne</span>
+    </a>
 
-        <a class="brand" href="index.html">
-            <span>FarmaOne</span>
-        </a>
+    <button class="menu-toggle" id="btn-menu" aria-label="Abrir menú">
+      &#9776;
+    </button>
+  </header>
 
-        <button class="menu-toggle" id="btn-menu" aria-label="Abrir menú">
-            &#9776;
+  <nav class="menu" id="nav-menu">
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="catalogo.html">Catálogo</a></li>
+
+      <li>
+        <a href="admin.html" id="enlaceAdmin" hidden>Administración</a>
+      </li>
+
+      <li>
+        <details>
+          <summary style="cursor:pointer; color:#0995d6; font-weight:bold; font-size:1.1rem;">
+            Categorías ▼
+          </summary>
+
+          <ul style="list-style:none; padding-top:10px; text-align:center;">
+            <li style="margin-bottom:10px;"><a href="medicamentos.html">Medicamentos</a></li>
+            <li style="margin-bottom:10px;"><a href="suplementos.html">Suplementos y Vitaminas</a></li>
+            <li style="margin-bottom:10px;"><a href="equipos.html">Equipos Médicos</a></li>
+          </ul>
+        </details>
+      </li>
+
+      <li><a href="cuidado-personal.html">Cuidado Personal</a></li>
+      <li><a href="ofertas.html">Ofertas del Mes</a></li>
+      <li><a href="carrito.html">Carrito 🛒</a></li>
+      <li><a href="cuenta.html">Mi Cuenta</a></li>
+    </ul>
+  </nav>
+
+  <section class="cuenta-seccion">
+    <div class="cuenta-contenedor">
+
+      <div id="formulario-login">
+        <h2>Iniciar Sesión</h2>
+
+        <p style="text-align:center; color:#666;">
+          Accede a tu cuenta de FarmaOne.
+        </p>
+
+        <form id="form-login">
+
+          <div class="campo-cuenta">
+            <label for="usuario">Correo electrónico:</label>
+
+            <input
+              type="email"
+              id="usuario"
+              name="usuario"
+              placeholder="Ej: usuario@correo.com"
+              autocomplete="email"
+              required
+            >
+          </div>
+
+          <div class="campo-cuenta">
+            <label for="contrasena">Contraseña:</label>
+
+            <div class="password-contenedor">
+              <input
+                type="password"
+                id="contrasena"
+                name="contrasena"
+                placeholder="Tu contraseña"
+                autocomplete="current-password"
+                required
+              >
+
+              <button
+                type="button"
+                class="btn-ver-pass"
+                id="btn-ver-pass"
+                aria-label="Mostrar contraseña"
+              >
+                👁️
+              </button>
+            </div>
+
+            <a href="#" class="recuperar" id="recuperar-pass">
+              ¿Olvidaste tu contraseña?
+            </a>
+          </div>
+
+          <button
+            type="submit"
+            class="btn-ingresar"
+            id="btn-ingresar"
+          >
+            Ingresar
+          </button>
+
+        </form>
+
+        <p
+          id="mensaje-login"
+          class="cuenta-mensaje"
+          role="status"
+          aria-live="polite"
+        ></p>
+
+        <div class="cuenta-enlaces">
+          ¿Aún no tienes una cuenta?
+          <br><br>
+          <a href="registro.html">Regístrate aquí</a>
+        </div>
+      </div>
+
+      <div id="panel-usuario" hidden>
+        <h2>Mi Cuenta</h2>
+
+        <p style="text-align:center; color:#16834a;">
+          ¡Has iniciado sesión correctamente!
+        </p>
+
+        <p id="nombre-usuario" style="text-align:center;"></p>
+        <p id="correo-usuario" style="text-align:center; color:#666;"></p>
+
+        <button
+          type="button"
+          class="btn-cerrar-sesion"
+          id="btn-cerrar-sesion"
+        >
+          Cerrar sesión
         </button>
+      </div>
 
-    </header>
+    </div>
+  </section>
 
-    <!-- NAVEGACIÓN -->
-    <nav class="menu" id="nav-menu">
+  <footer class="site-footer">
+    <div class="footer-container">
 
+      <div class="footer-col">
+        <h3>FarmaOne</h3>
+        <p>Tu farmacia en línea de confianza.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Enlaces Rápidos</h4>
         <ul>
-
-            <li><a href="index.html">Inicio</a></li>
-
-            <li><a href="catalogo.html">Catálogo</a></li>
-            <li><a href="admin.html" id="enlaceAdmin" hidden>
-  Administración
-</a></li>
-
-            <li>
-                <details>
-                    <summary style="cursor:pointer; color:#0995d6; font-weight:bold; font-size:1.1rem;">
-                        Categorías ▼
-                    </summary>
-
-                    <ul style="list-style:none; padding-top:10px; text-align:center;">
-
-                        <li style="margin-bottom:10px;">
-                            <a href="medicamentos.html">Medicamentos</a>
-                        </li>
-
-                        <li style="margin-bottom:10px;">
-                            <a href="suplementos.html">Suplementos y Vitaminas</a>
-                        </li>
-
-                        <li style="margin-bottom:10px;">
-                            <a href="equipos.html">Equipos Médicos</a>
-                        </li>
-
-                    </ul>
-                </details>
-            </li>
-
-            <li><a href="cuidado-personal.html">Cuidado Personal</a></li>
-            <li><a href="ofertas.html">Ofertas del Mes</a></li>
-            <li><a href="carrito.html">Carrito 🛒</a></li>
-            <li><a href="cuenta.html">Mi Cuenta</a></li>
-
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="carrito.html">Carrito</a></li>
         </ul>
+      </div>
 
-    </nav>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <p>📧 Soporte: contacto@farmaone.com</p>
+      </div>
 
-    <!-- CONTENIDO DE LA CUENTA -->
-    <section class="cuenta-seccion">
+    </div>
 
-        <div class="cuenta-contenedor">
+    <div class="footer-bottom">
+      &copy; 2026 FarmaOne. Todos los derechos reservados.
+    </div>
+  </footer>
 
-            <!-- FORMULARIO DE INGRESO -->
-            <div id="formulario-login">
+  <!-- MENÚ MÓVIL -->
+  <script>
+    const btnMenu = document.getElementById('btn-menu');
+    const menu = document.getElementById('nav-menu');
 
-                <h2>Iniciar Sesión</h2>
+    btnMenu.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
+  </script>
 
-                <p style="text-align:center; color:#666;">
-                    Accede a tu cuenta de FarmaOne.
-                </p>
+  <!-- SUPABASE Y AUTENTICACIÓN -->
+  <script type="module">
 
-                <form id="form-login">
+    import { supabase } from './supabase.js';
 
-                    <div class="campo-cuenta">
+    const formulario = document.getElementById('form-login');
+    const formularioLogin = document.getElementById('formulario-login');
+    const panelUsuario = document.getElementById('panel-usuario');
 
-                        <label for="usuario">
-                            Correo electrónico:
-                        </label>
+    const mensaje = document.getElementById('mensaje-login');
+    const botonIngresar = document.getElementById('btn-ingresar');
+    const enlaceAdmin = document.getElementById('enlaceAdmin');
 
-                        <input
-                            type="email"
-                            id="usuario"
-                            name="usuario"
-                            placeholder="Ej: usuario@correo.com"
-                            autocomplete="email"
-                            required
-                        >
+    // Controlar enlace de administrador
+    function actualizarEnlaceAdmin(session) {
+      enlaceAdmin.hidden =
+        session?.user?.app_metadata?.role !== 'admin';
+    }
 
-                    </div>
+    // Mostrar u ocultar contraseña
+    document.getElementById('btn-ver-pass').addEventListener('click', () => {
 
-                    <div class="campo-cuenta">
+      const campo = document.getElementById('contrasena');
+      const boton = document.getElementById('btn-ver-pass');
 
-                        <label for="contrasena">
-                            Contraseña:
-                        </label>
+      if (campo.type === 'password') {
+        campo.type = 'text';
+        boton.textContent = '🙈';
+        boton.setAttribute('aria-label', 'Ocultar contraseña');
+      } else {
+        campo.type = 'password';
+        boton.textContent = '👁️';
+        boton.setAttribute('aria-label', 'Mostrar contraseña');
+      }
 
-                        <div class="password-contenedor">
+    });
 
-                            <input
-                                type="password"
-                                id="contrasena"
-                                name="contrasena"
-                                placeholder="Tu contraseña"
-                                autocomplete="current-password"
-                                required
-                            >
+    // Mostrar panel de usuario
+    function mostrarUsuario(usuario) {
 
-                            <button
-                                type="button"
-                                class="btn-ver-pass"
-                                id="btn-ver-pass"
-                                aria-label="Mostrar contraseña"
-                            >
-                                👁️
-                            </button>
+      formularioLogin.hidden = true;
+      panelUsuario.hidden = false;
 
-                        </div>
+      const nombre = usuario.user_metadata?.full_name || 'Usuario de FarmaOne';
 
-                        <a href="#" class="recuperar" id="recuperar-pass">
-                            ¿Olvidaste tu contraseña?
-                        </a>
+      document.getElementById('nombre-usuario').textContent =
+        'Bienvenido, ' + nombre;
 
-                    </div>
+      document.getElementById('correo-usuario').textContent =
+        usuario.email || '';
 
-                    <button
-                        type="submit"
-                        class="btn-ingresar"
-                        id="btn-ingresar"
-                    >
-                        Ingresar
-                    </button>
+    }
 
-                </form>
+    // Mostrar formulario
+    function mostrarLogin() {
+      formularioLogin.hidden = false;
+      panelUsuario.hidden = true;
+    }
 
-                <p
-                    id="mensaje-login"
-                    class="cuenta-mensaje"
-                    role="status"
-                    aria-live="polite"
-                ></p>
+    // Comprobar sesión existente
+    async function comprobarSesion() {
 
-                <div class="cuenta-enlaces">
+      const { data, error } = await supabase.auth.getSession();
 
-                    ¿Aún no tienes una cuenta?
+      if (error) {
+        console.error(error);
+        return;
+      }
 
-                    <br><br>
+      if (data.session) {
+        mostrarUsuario(data.session.user);
+      } else {
+        mostrarLogin();
+      }
 
-                    <a href="registro.html">
-                        Regístrate aquí
-                    </a>
+      actualizarEnlaceAdmin(data.session);
 
-                </div>
+    }
 
-            </div>
+    // Iniciar sesión
+    formulario.addEventListener('submit', async (evento) => {
 
-            <!-- PANEL DE USUARIO -->
-            <div id="panel-usuario" hidden>
+      evento.preventDefault();
 
-                <h2>Mi Cuenta</h2>
+      const correo = document.getElementById('usuario').value.trim();
+      const password = document.getElementById('contrasena').value;
 
-                <p style="text-align:center; color:#16834a;">
-                    ¡Has iniciado sesión correctamente!
-                </p>
+      botonIngresar.disabled = true;
+      botonIngresar.textContent = 'Ingresando...';
 
-                <p id="nombre-usuario" style="text-align:center;"></p>
+      mensaje.style.color = '#555';
+      mensaje.textContent = 'Verificando información...';
 
-                <p id="correo-usuario" style="text-align:center; color:#666;"></p>
+      try {
 
-                <button
-                    type="button"
-                    class="btn-cerrar-sesion"
-                    id="btn-cerrar-sesion"
-                >
-                    Cerrar sesión
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- PIE DE PÁGINA -->
-    <footer class="site-footer">
-
-        <div class="footer-container">
-
-            <div class="footer-col">
-                <h3>FarmaOne</h3>
-                <p>Tu farmacia en línea de confianza.</p>
-            </div>
-
-            <div class="footer-col">
-                <h4>Enlaces Rápidos</h4>
-
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="catalogo.html">Catálogo</a></li>
-                    <li><a href="carrito.html">Carrito</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Contacto</h4>
-                <p>📧 Soporte: contacto@farmaone.com</p>
-            </div>
-
-        </div>
-
-        <div class="footer-bottom">
-            &copy; 2026 FarmaOne. Todos los derechos reservados.
-        </div>
-
-    </footer>
-
-    <!-- MENÚ RESPONSIVE -->
-    <script>
-
-        const btnMenu = document.getElementById('btn-menu');
-        const menu = document.getElementById('nav-menu');
-
-        btnMenu.addEventListener('click', () => {
-            menu.classList.toggle('active');
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: correo,
+          password: password
         });
 
-    </script>
-
-    <!-- SUPABASE AUTH -->
-    <script type="module">
-
-        import { supabase } from './supabase.js';
-
-        const formulario = document.getElementById('form-login');
-        const formularioLogin = document.getElementById('formulario-login');
-        const panelUsuario = document.getElementById('panel-usuario');
-
-        const mensaje = document.getElementById('mensaje-login');
-        const botonIngresar = document.getElementById('btn-ingresar');
-
-        // Mostrar u ocultar contraseña
-        document.getElementById('btn-ver-pass').addEventListener('click', () => {
-
-            const campo = document.getElementById('contrasena');
-            const boton = document.getElementById('btn-ver-pass');
-
-            if (campo.type === 'password') {
-                campo.type = 'text';
-                boton.textContent = '🙈';
-                boton.setAttribute('aria-label', 'Ocultar contraseña');
-            } else {
-                campo.type = 'password';
-                boton.textContent = '👁️';
-                boton.setAttribute('aria-label', 'Mostrar contraseña');
-            }
-
-        });
-
-        // Mostrar panel de usuario
-        function mostrarUsuario(usuario) {
-
-            formularioLogin.hidden = true;
-            panelUsuario.hidden = false;
-
-            const nombre = usuario.user_metadata?.full_name || 'Usuario de FarmaOne';
-
-            document.getElementById('nombre-usuario').textContent =
-                'Bienvenido, ' + nombre;
-
-            document.getElementById('correo-usuario').textContent =
-                usuario.email || '';
-
+        if (error) {
+          throw error;
         }
 
-        // Mostrar formulario
-        function mostrarLogin() {
+        mensaje.style.color = '#16834a';
+        mensaje.textContent = 'Inicio de sesión exitoso.';
 
-            formularioLogin.hidden = false;
-            panelUsuario.hidden = true;
+        mostrarUsuario(data.user);
+        actualizarEnlaceAdmin(data.session);
 
+      } catch (error) {
+
+        console.error('Error de inicio de sesión:', error);
+
+        mensaje.style.color = '#c0392b';
+        mensaje.textContent =
+          'No se pudo iniciar sesión. Verifica tu correo y contraseña o confirma tu correo electrónico.';
+
+      } finally {
+
+        botonIngresar.disabled = false;
+        botonIngresar.textContent = 'Ingresar';
+
+      }
+
+    });
+
+    // Recuperación de contraseña
+    document.getElementById('recuperar-pass').addEventListener('click', async (evento) => {
+
+      evento.preventDefault();
+
+      const correo = document.getElementById('usuario').value.trim();
+
+      if (!correo) {
+        mensaje.style.color = '#c0392b';
+        mensaje.textContent =
+          'Primero escribe tu correo electrónico.';
+        return;
+      }
+
+      mensaje.style.color = '#555';
+      mensaje.textContent = 'Enviando solicitud...';
+
+      try {
+
+        const { error } = await supabase.auth.resetPasswordForEmail(
+          correo,
+          {
+            redirectTo: window.location.origin +
+              window.location.pathname
+          }
+        );
+
+        if (error) {
+          throw error;
         }
 
-        // Comprobar sesión existente
-        async function comprobarSesion() {
+        mensaje.style.color = '#16834a';
+        mensaje.textContent =
+          'Si el correo está registrado, recibirás instrucciones para recuperar tu contraseña. Revisa también el correo no deseado.';
 
-            const { data, error } = await supabase.auth.getSession();
+      } catch (error) {
 
-            if (error) {
-                console.error(error);
-                return;
-            }
+        console.error(error);
 
-            if (data.session) {
-                mostrarUsuario(data.session.user);
-            } else {
-                mostrarLogin();
-            }
+        mensaje.style.color = '#c0392b';
+        mensaje.textContent =
+          'No se pudo enviar la solicitud: ' + error.message;
 
+      }
+
+    });
+
+    // Cerrar sesión
+    document.getElementById('btn-cerrar-sesion').addEventListener('click', async () => {
+
+      const boton = document.getElementById('btn-cerrar-sesion');
+
+      boton.disabled = true;
+      boton.textContent = 'Cerrando sesión...';
+
+      try {
+
+        const { error } = await supabase.auth.signOut();
+
+        if (error) {
+          throw error;
         }
 
-        // Iniciar sesión
-        formulario.addEventListener('submit', async (evento) => {
+        mostrarLogin();
+        actualizarEnlaceAdmin(null);
 
-            evento.preventDefault();
+        mensaje.style.color = '#16834a';
+        mensaje.textContent = 'Sesión cerrada correctamente.';
 
-            const correo = document.getElementById('usuario').value.trim();
-            const password = document.getElementById('contrasena').value;
+        formulario.reset();
 
-            botonIngresar.disabled = true;
-            botonIngresar.textContent = 'Ingresando...';
+      } catch (error) {
 
-            mensaje.style.color = '#555';
-            mensaje.textContent = 'Verificando información...';
+        console.error(error);
 
-            try {
+        boton.textContent = 'Cerrar sesión';
 
-                const { data, error } = await supabase.auth.signInWithPassword({
+        alert('No se pudo cerrar la sesión: ' + error.message);
 
-                    email: correo,
-                    password: password
+      } finally {
 
-                });
+        boton.disabled = false;
 
-                if (error) {
-                    throw error;
-                }
+      }
 
-                mensaje.style.color = '#16834a';
-                mensaje.textContent = 'Inicio de sesión exitoso.';
+    });
 
-                mostrarUsuario(data.user);
+    // Escuchar cambios de autenticación
+    supabase.auth.onAuthStateChange((evento, session) => {
 
-            } catch (error) {
+      if (session) {
+        mostrarUsuario(session.user);
+      } else {
+        mostrarLogin();
+      }
 
-                console.error('Error de inicio de sesión:', error);
+      actualizarEnlaceAdmin(session);
 
-                mensaje.style.color = '#c0392b';
-                mensaje.textContent =
-                    'No se pudo iniciar sesión. Verifica tu correo y contraseña o confirma tu correo electrónico.';
+    });
 
-            } finally {
+    // Comprobar sesión al abrir la página
+    comprobarSesion();
 
-                botonIngresar.disabled = false;
-                botonIngresar.textContent = 'Ingresar';
-
-            }
-
-        });
-
-        // Recuperación de contraseña
-        document.getElementById('recuperar-pass').addEventListener('click', async (evento) => {
-
-            evento.preventDefault();
-
-            const correo = document.getElementById('usuario').value.trim();
-
-            if (!correo) {
-                mensaje.style.color = '#c0392b';
-                mensaje.textContent =
-                    'Primero escribe tu correo electrónico.';
-                return;
-            }
-
-            mensaje.style.color = '#555';
-            mensaje.textContent = 'Enviando solicitud...';
-
-            try {
-
-                const { error } = await supabase.auth.resetPasswordForEmail(
-                    correo,
-                    {
-                        redirectTo: window.location.origin +
-                            window.location.pathname
-                    }
-                );
-
-                if (error) {
-                    throw error;
-                }
-
-                mensaje.style.color = '#16834a';
-                mensaje.textContent =
-                    'Si el correo está registrado, recibirás instrucciones para recuperar tu contraseña. Revisa también el correo no deseado.';
-
-            } catch (error) {
-
-                console.error(error);
-
-                mensaje.style.color = '#c0392b';
-                mensaje.textContent =
-                    'No se pudo enviar la solicitud: ' + error.message;
-
-            }
-
-        });
-
-        // Cerrar sesión
-        document.getElementById('btn-cerrar-sesion').addEventListener('click', async () => {
-
-            const boton = document.getElementById('btn-cerrar-sesion');
-
-            boton.disabled = true;
-            boton.textContent = 'Cerrando sesión...';
-
-            try {
-
-                const { error } = await supabase.auth.signOut();
-
-                if (error) {
-                    throw error;
-                }
-
-                mostrarLogin();
-
-                mensaje.style.color = '#16834a';
-                mensaje.textContent = 'Sesión cerrada correctamente.';
-
-                formulario.reset();
-
-            } catch (error) {
-
-                console.error(error);
-
-                boton.textContent = 'Cerrar sesión';
-
-                alert('No se pudo cerrar la sesión: ' + error.message);
-
-            } finally {
-
-                boton.disabled = false;
-
-            }
-
-        });
-
-        // Escuchar cambios de autenticación
-        supabase.auth.onAuthStateChange((evento, session) => {
-
-            if (session) {
-                mostrarUsuario(session.user);
-            } else {
-                mostrarLogin();
-            }
-
-        });
-
-        comprobarSesion();
-
-        import { supabase } from './supabase.js';
-
-  const enlaceAdmin = document.getElementById('enlaceAdmin');
-
-  async function verificarAdministrador() {
-    const { data: { session } } = await supabase.auth.getSession();
-
-    enlaceAdmin.hidden =
-      session?.user?.app_metadata?.role !== 'admin';
-  }
-
-  verificarAdministrador();
-
-  supabase.auth.onAuthStateChange(() => {
-    verificarAdministrador();
-  });
-
-    </script>
+  </script>
 
 </body>
 </html>

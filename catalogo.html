@@ -2,403 +2,390 @@
 <!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Catálogo - FarmaOne</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Catálogo - FarmaOne</title>
 </head>
 
 <body>
 
-    <!-- ENCABEZADO -->
-    <header class="navbar">
-        <a class="brand" href="index.html">
-            <img src="logo.png" alt="FarmaOne Logo" class="logo-img">
-            <span>FarmaOne</span>
+  <header class="navbar">
+    <a class="brand" href="index.html">
+      <img src="logo.png" alt="FarmaOne Logo" class="logo-img">
+      <span>FarmaOne</span>
+    </a>
+
+    <div class="search-bar-container">
+      <input type="text" placeholder="Buscar medicamentos, vitaminas..." class="search-input" disabled>
+      <button type="button" class="search-btn">🔍</button>
+    </div>
+
+    <div class="nav-actions">
+      <a href="cuenta.html" class="user-icon-link" title="Mi Cuenta">
+        👤 <span class="user-text">Mi Cuenta</span>
+      </a>
+
+      <button class="menu-toggle" id="btn-menu" aria-label="Abrir menú">
+        &#9776;
+      </button>
+    </div>
+  </header>
+
+  <nav class="menu" id="nav-menu">
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+
+      <li>
+        <a href="catalogo.html" style="color:#0995d6; font-weight:bold;">
+          Catálogo
         </a>
+      </li>
 
-        <div class="search-bar-container">
-            <input
-                type="text"
-                placeholder="Buscar medicamentos, vitaminas..."
-                class="search-input"
-                disabled
-            >
-            <button type="button" class="search-btn">🔍</button>
-        </div>
+      <li>
+        <a href="admin.html" id="enlaceAdmin" hidden>Administración</a>
+      </li>
 
-        <div class="nav-actions">
-            <a href="cuenta.html" class="user-icon-link" title="Mi Cuenta">
-                👤 <span class="user-text">Mi Cuenta</span>
-            </a>
+      <li>
+        <details>
+          <summary style="cursor:pointer; color:#0995d6; font-weight:bold; font-size:1.1rem;">
+            Categorías ▼
+          </summary>
 
-            <button class="menu-toggle" id="btn-menu" aria-label="Abrir menú">
-                &#9776;
-            </button>
-        </div>
-    </header>
+          <ul style="list-style:none; padding-top:10px; text-align:center;">
+            <li style="margin-bottom:10px;"><a href="medicamentos.html">Medicamentos</a></li>
+            <li style="margin-bottom:10px;"><a href="suplementos.html">Suplementos y Vitaminas</a></li>
+            <li style="margin-bottom:10px;"><a href="equipos.html">Equipos Médicos</a></li>
+          </ul>
+        </details>
+      </li>
 
-    <!-- MENÚ DE NAVEGACIÓN -->
-    <nav class="menu" id="nav-menu">
-        <ul>
-            <li><a href="index.html">Inicio</a></li>
+      <li><a href="cuidado-personal.html">Cuidado Personal</a></li>
+      <li><a href="ofertas.html">Ofertas del Mes</a></li>
 
-            <li>
-                <a href="catalogo.html" style="color:#0995d6; font-weight:bold;">
-                    Catálogo
-                </a>
-            </li>
-            <li><a href="admin.html" id="enlaceAdmin" hidden> Administración</a></li>
+      <li>
+        <a href="carrito.html">
+          Carrito (<span id="contador-carrito">0</span>) 🛒
+        </a>
+      </li>
 
-            <li>
-                <details>
-                    <summary style="cursor:pointer; color:#0995d6; font-weight:bold; font-size:1.1rem;">
-                        Categorías ▼
-                    </summary>
+      <li><a href="cuenta.html">Mi Cuenta</a></li>
+      <li><a href="registro.html">Regístrate</a></li>
+    </ul>
+  </nav>
 
-                    <ul style="list-style:none; padding-top:10px; text-align:center;">
-                        <li style="margin-bottom:10px;">
-                            <a href="medicamentos.html">Medicamentos</a>
-                        </li>
+  <section style="text-align:center; margin-top:30px;">
+    <h1 style="color:#2c3e50; font-size:2rem;">
+      Catálogo General de Productos
+    </h1>
 
-                        <li style="margin-bottom:10px;">
-                            <a href="suplementos.html">Suplementos y Vitaminas</a>
-                        </li>
-
-                        <li style="margin-bottom:10px;">
-                            <a href="equipos.html">Equipos Médicos</a>
-                        </li>
-                    </ul>
-                </details>
-            </li>
-
-            <li><a href="cuidado-personal.html">Cuidado Personal</a></li>
-            <li><a href="ofertas.html">Ofertas del Mes</a></li>
-
-            <li>
-                <a href="carrito.html">
-                    Carrito (<span id="contador-carrito">0</span>) 🛒
-                </a>
-            </li>
-
-            <li><a href="cuenta.html">Mi Cuenta</a></li>
-            <li><a href="registro.html">Regístrate</a></li>
-        </ul>
-    </nav>
-
-    <!-- TÍTULO -->
-    <section style="text-align:center; margin-top:30px;">
-        <h1 style="color:#2c3e50; font-size:2rem;">
-            Catálogo General de Productos
-        </h1>
-
-        <p style="color:#666; margin-top:5px;">
-            Explora nuestra selección de medicamentos, suplementos y equipos médicos.
-        </p>
-    </section>
-
-    <!-- MENSAJES -->
-    <p id="mensaje-carga" style="text-align:center; margin:25px;">
-        Preparando catálogo...
+    <p style="color:#666; margin-top:5px;">
+      Explora nuestra selección de medicamentos, suplementos y equipos médicos.
     </p>
+  </section>
+
+  <p id="mensaje-carga" style="text-align:center; margin:25px;">
+    Preparando catálogo...
+  </p>
+
+  <p id="mensaje-accion" style="text-align:center; margin:10px; color:#16834a;"></p>
+
+  <main class="catalogo-container" id="lista-productos"></main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+
+      <div class="footer-col">
+        <h3>FarmaOne</h3>
+        <p>Tu farmacia en línea de confianza.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Enlaces Rápidos</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="carrito.html">Carrito</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <p>📧 Soporte: contacto@farmaone.com</p>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2026 FarmaOne. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <!-- MENÚ MÓVIL -->
+  <script>
+    const btnMenu = document.getElementById('btn-menu');
+    const menu = document.getElementById('nav-menu');
+
+    btnMenu.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
+  </script>
+
+  <!-- SUPABASE, ADMINISTRADOR Y CATÁLOGO -->
+  <script type="module">
+    import { supabase } from './supabase.js';
+
+    const listaProductos = document.getElementById('lista-productos');
+    const mensajeCarga = document.getElementById('mensaje-carga');
+    const mensajeAccion = document.getElementById('mensaje-accion');
+    const contadorCarrito = document.getElementById('contador-carrito');
+    const enlaceAdmin = document.getElementById('enlaceAdmin');
+
+    let productosDisponibles = [];
+
+    // Verificar administrador
+    function actualizarEnlaceAdmin(session) {
+      enlaceAdmin.hidden =
+        session?.user?.app_metadata?.role !== 'admin';
+    }
+
+    async function verificarAdministrador() {
+      const { data, error } = await supabase.auth.getSession();
+
+      if (error) {
+        console.error('Error verificando administrador:', error);
+        return;
+      }
+
+      actualizarEnlaceAdmin(data.session);
+    }
 
-    <p id="mensaje-accion" style="text-align:center; margin:10px; color:#16834a;"></p>
-
-    <!-- PRODUCTOS -->
-    <main class="catalogo-container" id="lista-productos"></main>
-
-    <!-- PIE DE PÁGINA -->
-    <footer class="site-footer">
-        <div class="footer-container">
-
-            <div class="footer-col">
-                <h3>FarmaOne</h3>
-                <p>Tu farmacia en línea de confianza.</p>
-            </div>
-
-            <div class="footer-col">
-                <h4>Enlaces Rápidos</h4>
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="catalogo.html">Catálogo</a></li>
-                    <li><a href="carrito.html">Carrito</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Contacto</h4>
-                <p>📧 Soporte: contacto@farmaone.com</p>
-            </div>
-
-        </div>
-
-        <div class="footer-bottom">
-            &copy; 2026 FarmaOne. Todos los derechos reservados.
-        </div>
-    </footer>
-
-    <!-- MENÚ RESPONSIVE -->
-    <script>
-        const btnMenu = document.getElementById('btn-menu');
-        const menu = document.getElementById('nav-menu');
-
-        btnMenu.addEventListener('click', () => {
-            menu.classList.toggle('active');
-        });
-    </script>
-
-    <!-- CONEXIÓN CON SUPABASE Y CARRITO -->
-    <script type="module">
-        import { supabase } from './supabase.js';
-
-        const listaProductos = document.getElementById('lista-productos');
-        const mensajeCarga = document.getElementById('mensaje-carga');
-        const mensajeAccion = document.getElementById('mensaje-accion');
-        const contadorCarrito = document.getElementById('contador-carrito');
-
-        let productosDisponibles = [];
-
-        // Obtener carrito guardado
-        function obtenerCarrito() {
-            try {
-                const carrito = JSON.parse(
-                    localStorage.getItem('farmaone_carrito') || '[]'
-                );
-
-                return Array.isArray(carrito) ? carrito : [];
-            } catch {
-                return [];
-            }
-        }
-
-        // Actualizar contador
-        function actualizarContador() {
-            const carrito = obtenerCarrito();
-
-            const cantidad = carrito.reduce(
-                (total, producto) => total + (Number(producto.cantidad) || 0),
-                0
-            );
-
-            contadorCarrito.textContent = cantidad;
-        }
-
-        // Formato de precios
-        function formatoPrecio(precio) {
-            return new Intl.NumberFormat('es-CO', {
-                style: 'currency',
-                currency: 'COP',
-                maximumFractionDigits: 0
-            }).format(precio);
-        }
-
-        // Agregar producto al carrito
-        function agregarAlCarrito(id, redirigir = false) {
-            const producto = productosDisponibles.find(
-                item => String(item.id) === String(id)
-            );
-
-            if (!producto) {
-                alert('No se encontró el producto.');
-                return;
-            }
-
-            if (producto.stock <= 0) {
-                alert('Este producto no tiene existencias disponibles.');
-                return;
-            }
-
-            const carrito = obtenerCarrito();
-
-            const productoExistente = carrito.find(
-                item => String(item.id) === String(producto.id)
-            );
-
-            if (productoExistente) {
-                if (productoExistente.cantidad >= producto.stock) {
-                    alert('No hay más existencias disponibles de este producto.');
-                    return;
-                }
-
-                productoExistente.cantidad++;
-            } else {
-                carrito.push({
-                    id: producto.id,
-                    nombre: producto.nombre,
-                    precio: Number(producto.precio),
-                    imagen: producto.imagen,
-                    cantidad: 1
-                });
-            }
-
-            localStorage.setItem(
-                'farmaone_carrito',
-                JSON.stringify(carrito)
-            );
-
-            actualizarContador();
-
-            if (redirigir) {
-                window.location.href = 'carrito.html';
-            } else {
-                mensajeAccion.textContent =
-                    producto.nombre + ' se agregó al carrito.';
-
-                setTimeout(() => {
-                    mensajeAccion.textContent = '';
-                }, 3000);
-            }
-        }
-
-        // Crear tarjeta de producto
-        function crearTarjeta(producto) {
-            const tarjeta = document.createElement('div');
-            tarjeta.className = 'product-card-horizontal';
-
-            const imagen = document.createElement('img');
-            imagen.className = 'product-img';
-            imagen.alt = producto.nombre;
-            imagen.loading = 'lazy';
-            imagen.src = producto.imagen ||
-                'https://placehold.co/300x300?text=FarmaOne';
-
-            imagen.onerror = function () {
-                this.onerror = null;
-                this.src = 'https://placehold.co/300x300?text=FarmaOne';
-            };
-
-            const informacion = document.createElement('div');
-            informacion.className = 'product-info';
-
-            const nombre = document.createElement('h3');
-            nombre.textContent = producto.nombre;
-
-            const descripcion = document.createElement('p');
-            descripcion.className = 'product-desc';
-            descripcion.textContent =
-                producto.descripcion || 'Información no disponible.';
-
-            const categoria = document.createElement('p');
-            categoria.textContent = 'Categoría: ' + producto.categoria;
-
-            const precio = document.createElement('span');
-            precio.className = 'product-price';
-            precio.textContent = formatoPrecio(producto.precio);
-
-            const existencia = document.createElement('p');
-            existencia.textContent = producto.stock > 0
-                ? 'Existencias disponibles: ' + producto.stock
-                : 'Producto agotado';
-
-            informacion.append(
-                nombre,
-                descripcion,
-                categoria,
-                precio,
-                existencia
-            );
-
-            const acciones = document.createElement('div');
-            acciones.className = 'product-actions';
-
-            // Botón comprar
-            const botonComprar = document.createElement('button');
-            botonComprar.className = 'btn-buy';
-            botonComprar.type = 'button';
-            botonComprar.textContent = 'Comprar';
-
-            // Botón agregar al carrito
-            const botonCarrito = document.createElement('button');
-            botonCarrito.className = 'btn-cart';
-            botonCarrito.type = 'button';
-            botonCarrito.textContent = '🛒 Agregar';
-
-            if (producto.stock <= 0) {
-                botonComprar.disabled = true;
-                botonCarrito.disabled = true;
-                botonComprar.textContent = 'Agotado';
-            } else {
-                botonCarrito.addEventListener('click', () => {
-                    agregarAlCarrito(producto.id, false);
-                });
-
-                botonComprar.addEventListener('click', () => {
-                    agregarAlCarrito(producto.id, true);
-                });
-            }
-
-            acciones.append(botonComprar, botonCarrito);
-
-            tarjeta.append(imagen, informacion, acciones);
-
-            return tarjeta;
-        }
-
-        // Consultar productos en Supabase
-        async function cargarProductos() {
-            try {
-                mensajeCarga.textContent = 'Conectando con FarmaOne...';
-
-                const { data, error } = await supabase
-                    .from('productos')
-                    .select('id, nombre, descripcion, categoria, precio, imagen, stock')
-                    .eq('activo', true)
-                    .order('id', { ascending: true });
-
-                if (error) {
-                    throw error;
-                }
-
-                productosDisponibles = data || [];
-
-                if (productosDisponibles.length === 0) {
-                    mensajeCarga.textContent =
-                        'No hay productos disponibles actualmente.';
-                    return;
-                }
-
-                listaProductos.innerHTML = '';
-
-                productosDisponibles.forEach(producto => {
-                    listaProductos.appendChild(
-                        crearTarjeta(producto)
-                    );
-                });
-
-                mensajeCarga.textContent =
-                    'Se encontraron ' + productosDisponibles.length +
-                    ' productos en FarmaOne.';
-
-            } catch (error) {
-                console.error('Error al cargar productos:', error);
-
-                mensajeCarga.textContent =
-                    'Error al cargar los productos: ' + error.message;
-            }
-        }
-
-        // Inicio
-        actualizarContador();
-        cargarProductos();
-
-        import { supabase } from './supabase.js';
-
-  const enlaceAdmin = document.getElementById('enlaceAdmin');
-
-  async function verificarAdministrador() {
-    const { data: { session } } = await supabase.auth.getSession();
-
-    enlaceAdmin.hidden =
-      session?.user?.app_metadata?.role !== 'admin';
-  }
-
-  verificarAdministrador();
-
-  supabase.auth.onAuthStateChange(() => {
     verificarAdministrador();
-  });
 
-    </script>
+    supabase.auth.onAuthStateChange((evento, session) => {
+      actualizarEnlaceAdmin(session);
+    });
+
+    // Obtener carrito guardado
+    function obtenerCarrito() {
+      try {
+        const carrito = JSON.parse(
+          localStorage.getItem('farmaone_carrito') || '[]'
+        );
+
+        return Array.isArray(carrito) ? carrito : [];
+      } catch {
+        return [];
+      }
+    }
+
+    // Actualizar contador
+    function actualizarContador() {
+      const carrito = obtenerCarrito();
+
+      const cantidad = carrito.reduce(
+        (total, producto) => total + (Number(producto.cantidad) || 0),
+        0
+      );
+
+      contadorCarrito.textContent = cantidad;
+    }
+
+    // Formato de precios
+    function formatoPrecio(precio) {
+      return new Intl.NumberFormat('es-CO', {
+        style: 'currency',
+        currency: 'COP',
+        maximumFractionDigits: 0
+      }).format(precio);
+    }
+
+    // Agregar producto al carrito
+    function agregarAlCarrito(id, redirigir = false) {
+      const producto = productosDisponibles.find(
+        item => String(item.id) === String(id)
+      );
+
+      if (!producto) {
+        alert('No se encontró el producto.');
+        return;
+      }
+
+      if (producto.stock <= 0) {
+        alert('Este producto no tiene existencias disponibles.');
+        return;
+      }
+
+      const carrito = obtenerCarrito();
+
+      const productoExistente = carrito.find(
+        item => String(item.id) === String(producto.id)
+      );
+
+      if (productoExistente) {
+        if (productoExistente.cantidad >= producto.stock) {
+          alert('No hay más existencias disponibles de este producto.');
+          return;
+        }
+
+        productoExistente.cantidad++;
+      } else {
+        carrito.push({
+          id: producto.id,
+          nombre: producto.nombre,
+          precio: Number(producto.precio),
+          imagen: producto.imagen,
+          cantidad: 1
+        });
+      }
+
+      localStorage.setItem(
+        'farmaone_carrito',
+        JSON.stringify(carrito)
+      );
+
+      actualizarContador();
+
+      if (redirigir) {
+        window.location.href = 'carrito.html';
+      } else {
+        mensajeAccion.textContent =
+          producto.nombre + ' se agregó al carrito.';
+
+        setTimeout(() => {
+          mensajeAccion.textContent = '';
+        }, 3000);
+      }
+    }
+
+    // Crear tarjeta de producto
+    function crearTarjeta(producto) {
+      const tarjeta = document.createElement('div');
+      tarjeta.className = 'product-card-horizontal';
+
+      const imagen = document.createElement('img');
+      imagen.className = 'product-img';
+      imagen.alt = producto.nombre;
+      imagen.loading = 'lazy';
+      imagen.src = producto.imagen ||
+        'https://placehold.co/300x300?text=FarmaOne';
+
+      imagen.onerror = function () {
+        this.onerror = null;
+        this.src = 'https://placehold.co/300x300?text=FarmaOne';
+      };
+
+      const informacion = document.createElement('div');
+      informacion.className = 'product-info';
+
+      const nombre = document.createElement('h3');
+      nombre.textContent = producto.nombre;
+
+      const descripcion = document.createElement('p');
+      descripcion.className = 'product-desc';
+      descripcion.textContent =
+        producto.descripcion || 'Información no disponible.';
+
+      const categoria = document.createElement('p');
+      categoria.textContent = 'Categoría: ' + producto.categoria;
+
+      const precio = document.createElement('span');
+      precio.className = 'product-price';
+      precio.textContent = formatoPrecio(producto.precio);
+
+      const existencia = document.createElement('p');
+      existencia.textContent = producto.stock > 0
+        ? 'Existencias disponibles: ' + producto.stock
+        : 'Producto agotado';
+
+      informacion.append(
+        nombre,
+        descripcion,
+        categoria,
+        precio,
+        existencia
+      );
+
+      const acciones = document.createElement('div');
+      acciones.className = 'product-actions';
+
+      const botonComprar = document.createElement('button');
+      botonComprar.className = 'btn-buy';
+      botonComprar.type = 'button';
+      botonComprar.textContent = 'Comprar';
+
+      const botonCarrito = document.createElement('button');
+      botonCarrito.className = 'btn-cart';
+      botonCarrito.type = 'button';
+      botonCarrito.textContent = '🛒 Agregar';
+
+      if (producto.stock <= 0) {
+        botonComprar.disabled = true;
+        botonCarrito.disabled = true;
+        botonComprar.textContent = 'Agotado';
+      } else {
+        botonCarrito.addEventListener('click', () => {
+          agregarAlCarrito(producto.id, false);
+        });
+
+        botonComprar.addEventListener('click', () => {
+          agregarAlCarrito(producto.id, true);
+        });
+      }
+
+      acciones.append(botonComprar, botonCarrito);
+      tarjeta.append(imagen, informacion, acciones);
+
+      return tarjeta;
+    }
+
+    // Consultar productos en Supabase
+    async function cargarProductos() {
+      try {
+        mensajeCarga.textContent = 'Conectando con FarmaOne...';
+
+        const { data, error } = await supabase
+          .from('productos')
+          .select('id, nombre, descripcion, categoria, precio, imagen, stock')
+          .eq('activo', true)
+          .order('id', { ascending: true });
+
+        if (error) {
+          throw error;
+        }
+
+        productosDisponibles = data || [];
+
+        if (productosDisponibles.length === 0) {
+          mensajeCarga.textContent =
+            'No hay productos disponibles actualmente.';
+          return;
+        }
+
+        listaProductos.innerHTML = '';
+
+        productosDisponibles.forEach(producto => {
+          listaProductos.appendChild(
+            crearTarjeta(producto)
+          );
+        });
+
+        mensajeCarga.textContent =
+          'Se encontraron ' + productosDisponibles.length +
+          ' productos en FarmaOne.';
+
+      } catch (error) {
+        console.error('Error al cargar productos:', error);
+
+        mensajeCarga.textContent =
+          'Error al cargar los productos: ' + error.message;
+      }
+    }
+
+    actualizarContador();
+    cargarProductos();
+
+  </script>
 
 </body>
 </html>
