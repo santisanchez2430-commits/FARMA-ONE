@@ -2,9 +2,9 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
   <title>FarmaOne - Tu Farmacia en Línea</title>
 </head>
 
@@ -22,31 +22,26 @@
     </div>
 
     <div class="nav-actions">
-      <a href="cuenta.html" class="user-icon-link" title="Mi Cuenta / Registro">
+      <a href="cuenta.html" class="user-icon-link" title="Mi Cuenta">
         👤 <span class="user-text">Mi Cuenta</span>
       </a>
       <button class="menu-toggle" id="btn-menu" aria-label="Abrir menú">&#9776;</button>
     </div>
   </header>
 
-  <!-- BARRA DE NAVEGACIÓN -->
+  <!-- BARRA DE NAVEGACIÓN CORREGIDA -->
   <nav class="menu" id="nav-menu">
     <ul>
       <li><a href="index.html">Inicio</a></li>
-      <li><a href="catalogo.html" style="color: #0995d6; font-weight: bold;">Catálogo</a></li>
-
-      <li>
-        <a href="admin.html" id="enlaceAdmin" hidden>Administración</a>
-      </li>
-
-      <li><a href="carrito.html">Carrito (0) 🛒</a></li>
+      <li><a href="catalogo.html">Catálogo</a></li>
+      <li><a href="carrito.html">Carrito 🛒</a></li>
       <li><a href="cuenta.html">Mi Cuenta</a></li>
       <li><a href="registro.html">Regístrate</a></li>
       <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="admin.html" id="enlaceAdmin" hidden>Administración</a></li>
     </ul>
   </nav>
 
-  <!-- PRESENTACIÓN -->
   <section class="hero-section">
     <h1>Bienvenido a FarmaOne</h1>
     <p class="hero-slogan">
@@ -61,21 +56,27 @@
   <main style="padding: 40px 20px; max-width: 800px; margin: 0 auto; line-height: 1.7; color: #444;">
 
     <section style="margin-bottom: 40px; text-align: center;">
-      <h2 style="color: #333; font-size: 1.8rem; margin-bottom: 15px;">¿Qué ofrecemos en FarmaOne?</h2>
+      <h2 style="color: #333; font-size: 1.8rem; margin-bottom: 15px;">
+        ¿Qué ofrecemos en FarmaOne?
+      </h2>
       <p style="font-size: 1.05rem; color: #555;">
         En FarmaOne nos dedicamos a ofrecerte la mejor experiencia en pedidos de productos farmacéuticos, suplementos vitamínicos y equipos médicos esenciales. Nuestro objetivo es facilitar tu día a día, asegurándonos de que recibas tus productos de manera rápida, confiable y segura directamente en la puerta de tu hogar.
       </p>
     </section>
 
     <section style="margin-bottom: 40px;">
-      <h2 style="color: #2c3e50; border-bottom: 2px solid #0995d6; padding-bottom: 8px;">Nuestra Historia</h2>
+      <h2 style="color: #2c3e50; border-bottom: 2px solid #0995d6; padding-bottom: 8px;">
+        Nuestra Historia
+      </h2>
       <p style="margin-top: 15px;">
         FarmaOne nació con la firme convicción de transformar el acceso a la salud y al bienestar en el hogar. Comprendimos que las familias necesitan una alternativa rápida, confiable y cercana a los servicios farmacéuticos tradicionales, eliminando largas filas y optimizando la entrega de medicamentos esenciales.
       </p>
     </section>
 
     <section style="margin-bottom: 40px;">
-      <h2 style="color: #2c3e50; border-bottom: 2px solid #0995d6; padding-bottom: 8px;">Nuestra Misión y Visión</h2>
+      <h2 style="color: #2c3e50; border-bottom: 2px solid #0995d6; padding-bottom: 8px;">
+        Nuestra Misión y Visión
+      </h2>
       <p style="margin-top: 15px;">
         <strong>Misión:</strong> Proveer productos farmacéuticos y de cuidado de la salud de la más alta calidad con un servicio ágil, transparente y enfocado en el bienestar de cada cliente.
       </p>
@@ -86,7 +87,6 @@
 
   </main>
 
-  <!-- PIE DE PÁGINA -->
   <footer class="site-footer">
     <div class="footer-container">
 
@@ -136,11 +136,6 @@
 
     const enlaceAdmin = document.getElementById('enlaceAdmin');
 
-    function actualizarEnlaceAdmin(session) {
-      enlaceAdmin.hidden =
-        session?.user?.app_metadata?.role !== 'admin';
-    }
-
     async function verificarSesion() {
       const { data, error } = await supabase.auth.getSession();
 
@@ -149,13 +144,15 @@
         return;
       }
 
-      actualizarEnlaceAdmin(data.session);
+      enlaceAdmin.hidden =
+        data.session?.user?.app_metadata?.role !== 'admin';
     }
 
     verificarSesion();
 
     supabase.auth.onAuthStateChange((evento, session) => {
-      actualizarEnlaceAdmin(session);
+      enlaceAdmin.hidden =
+        session?.user?.app_metadata?.role !== 'admin';
     });
   </script>
 

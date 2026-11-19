@@ -1,6 +1,8 @@
+
 /* ==========================================
-   ESTILOS GENERALES Y CONFIGURACIÓN BÁSICA
+   FARMAONE - ESTILOS GENERALES
    ========================================== */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,11 +13,17 @@ body {
   font-family: Arial, sans-serif;
   color: #333;
   background-color: #f9f9f9;
+  overflow-x: hidden;
+}
+
+a {
+  transition: color 0.2s ease, background 0.2s ease;
 }
 
 /* ==========================================
-   BARRA DE NAVEGACIÓN (NAVBAR) Y MENÚ
+   ENCABEZADO Y LOGOTIPO
    ========================================== */
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -39,7 +47,6 @@ body {
   gap: 10px;
 }
 
-/* Logotipo más grande y legible */
 .logo-img {
   height: 55px;
   width: auto;
@@ -51,7 +58,10 @@ body {
   font-size: 1.4rem;
 }
 
-/* --- ESTILOS DE LA BARRA DE BÚSQUEDA --- */
+/* ==========================================
+   BARRA DE BÚSQUEDA
+   ========================================== */
+
 .search-bar-container {
   display: flex;
   flex: 1;
@@ -64,6 +74,7 @@ body {
 
 .search-input {
   flex: 1;
+  min-width: 0;
   padding: 10px 15px;
   border: none;
   background: transparent;
@@ -79,14 +90,16 @@ body {
   cursor: pointer;
   font-size: 1rem;
   color: white;
-  transition: background 0.2s;
 }
 
 .search-btn:hover {
   background: #077ab0;
 }
 
-/* --- ACCIONES DE USUARIO Y MENÚ MÓVIL --- */
+/* ==========================================
+   ACCIONES DE USUARIO
+   ========================================== */
+
 .nav-actions {
   display: flex;
   align-items: center;
@@ -104,7 +117,6 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  transition: background 0.2s, color 0.2s;
 }
 
 .user-icon-link:hover {
@@ -112,17 +124,46 @@ body {
   color: white;
 }
 
-/* Ocultar el texto "Mi Cuenta" en pantallas muy pequeñas para ahorrar espacio */
-@media (max-width: 600px) {
-  .user-text {
-    display: none;
-  }
-  .search-bar-container {
-    max-width: 180px;
-  }
+/* ==========================================
+   BARRA DE NAVEGACIÓN
+   ========================================== */
+
+.menu {
+  display: block;
+  background-color: #ffffff;
+  border-top: 1px solid #eee;
+  padding: 15px 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  position: relative;
+  z-index: 900;
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.menu ul li {
+  margin-bottom: 0;
+}
+
+.menu ul li a {
+  text-decoration: none;
+  color: #2c3e50;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.menu ul li a:hover {
+  color: #0995d6;
 }
 
 .menu-toggle {
+  display: none;
   background: none;
   border: none;
   font-size: 1.8rem;
@@ -130,42 +171,10 @@ body {
   color: #2c3e50;
 }
 
-.menu {
-  display: none;
-  background-color: #ffffff;
-  border-top: 1px solid #eee;
-  padding: 15px 20px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-}
-
-.menu.active {
-  display: block;
-}
-
-.menu ul {
-  list-style: none;
-}
-
-.menu ul li {
-  margin-bottom: 12px;
-}
-
-.menu ul li a {
-  text-decoration: none;
-  color: #333;
-  font-size: 1.05rem;
-  transition: color 0.2s;
-}
-
-.menu ul li a:hover {
-  color: #0995d6;
-}
-
 /* ==========================================
-   ESTILOS DE PORTADA, BANNER Y FOOTER
+   PORTADA Y BIENVENIDA
    ========================================== */
 
-/* Sección de Bienvenida */
 .hero-section {
   padding: 40px 20px;
   max-width: 1000px;
@@ -186,14 +195,12 @@ body {
   margin-bottom: 20px;
 }
 
-/* Banner de borde a borde (Full-width) */
+/* ==========================================
+   BANNER PRINCIPAL
+   ========================================== */
+
 .full-width-banner {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  width: 100%;
   overflow: hidden;
   margin-top: 10px;
   margin-bottom: 20px;
@@ -203,11 +210,13 @@ body {
   width: 100%;
   height: auto;
   display: block;
+  object-fit: cover;
 }
 
 /* ==========================================
-   ESTILOS PARA LAS TARJETAS HORIZONTALES DEL CATÁLOGO
+   CONTENEDORES DEL CATÁLOGO
    ========================================== */
+
 .catalogo-container {
   max-width: 900px;
   margin: 30px auto;
@@ -216,6 +225,10 @@ body {
   flex-direction: column;
   gap: 20px;
 }
+
+/* ==========================================
+   TARJETAS DE PRODUCTOS
+   ========================================== */
 
 .product-card-horizontal {
   display: flex;
@@ -234,7 +247,6 @@ body {
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* Foto a la izquierda centradita */
 .product-img {
   width: 100px;
   height: 100px;
@@ -244,7 +256,6 @@ body {
   padding: 5px;
 }
 
-/* Descripción al centro */
 .product-info {
   flex: 1;
   display: flex;
@@ -271,7 +282,10 @@ body {
   color: #0995d6;
 }
 
-/* Botones abajo a la derecha */
+/* ==========================================
+   BOTONES DE PRODUCTOS
+   ========================================== */
+
 .product-actions {
   display: flex;
   flex-direction: column;
@@ -315,23 +329,10 @@ body {
   background-color: #e4e7eb;
 }
 
-/* Adaptabilidad para celulares del catálogo */
-@media (max-width: 600px) {
-  .product-card-horizontal {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  .product-actions {
-    flex-direction: row;
-    width: 100%;
-    justify-content: center;
-  }
-}
-
 /* ==========================================
-   ESTILOS PARA EL FOOTER
+   PIE DE PÁGINA
    ========================================== */
+
 .site-footer {
   background-color: #2c3e50;
   color: #ffffff;
@@ -357,12 +358,12 @@ body {
 
 .footer-col h3 {
   color: #0995d6;
-  margin-top: 0;
+  margin-bottom: 12px;
   font-size: 1.2rem;
 }
 
 .footer-col h4 {
-  margin-top: 0;
+  margin-bottom: 12px;
   font-size: 1rem;
   color: #fff;
 }
@@ -389,6 +390,16 @@ body {
   font-size: 0.9rem;
 }
 
+.footer-col ul li a:hover,
+.footer-col p a:hover {
+  color: #ffffff;
+}
+
+.footer-col p a {
+  color: #0995d6;
+  text-decoration: none;
+}
+
 .footer-bottom {
   max-width: 1000px;
   margin: 30px auto 0 auto;
@@ -397,4 +408,122 @@ body {
   text-align: center;
   font-size: 0.85rem;
   color: #95a5a6;
+}
+
+/* ==========================================
+   DISEÑO RESPONSIVE PARA TABLET Y CELULAR
+   ========================================== */
+
+@media (max-width: 700px) {
+
+  .navbar {
+    padding: 10px 15px;
+    gap: 10px;
+  }
+
+  .logo-img {
+    height: 45px;
+  }
+
+  .brand span {
+    font-size: 1.15rem;
+  }
+
+  .search-bar-container {
+    max-width: 200px;
+  }
+
+  .search-input {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+
+  .user-text {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .menu.active {
+    display: block;
+  }
+
+  .menu ul {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .menu ul li {
+    margin-bottom: 0;
+  }
+
+  .hero-section {
+    padding: 30px 15px;
+  }
+
+  .hero-section h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-slogan {
+    font-size: 1.05rem;
+  }
+
+  .product-card-horizontal {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .product-actions {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .product-img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .footer-col {
+    min-width: 100%;
+  }
+}
+
+/* ==========================================
+   PANTALLAS MUY PEQUEÑAS
+   ========================================== */
+
+@media (max-width: 380px) {
+
+  .navbar {
+    flex-wrap: wrap;
+  }
+
+  .search-bar-container {
+    order: 3;
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+
+  .hero-section h1 {
+    font-size: 1.5rem;
+  }
+
+  .product-actions {
+    flex-direction: column;
+  }
 }
