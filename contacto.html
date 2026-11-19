@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - FarmaOne</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .contacto-contenedor {
+            max-width: 650px;
+            margin: 45px auto;
+            padding: 30px;
+            background: #f4f8fb;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,.1);
+        }
+
+        .contacto-contenedor h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .contacto-contenedor p {
+            text-align: center;
+            color: #666;
+        }
+
+        .campo-contacto {
+            margin: 18px 0;
+        }
+
+        .campo-contacto label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .campo-contacto input,
+        .campo-contacto textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        .campo-contacto textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .btn-contacto {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 6px;
+            background: #0995d6;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-contacto:disabled {
+            opacity: .6;
+            cursor: wait;
+        }
+
+        #mensaje-estado {
+            margin-top: 18px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <a class="brand" href="index.html">
+        <img src="logo.png" alt="FarmaOne" class="logo-img">
+        <span>FarmaOne</span>
+    </a>
+
+    <a href="cuenta.html" class="user-icon-link">👤 Mi Cuenta</a>
+</header>
+
+<nav class="menu">
+    <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="catalogo.html">Catálogo</a></li>
+        <li><a href="carrito.html">Carrito 🛒</a></li>
+        <li><a href="cuenta.html">Mi Cuenta</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+</nav>
+
+<main class="contacto-contenedor">
+
+    <h1>Contáctanos</h1>
+    <p>En FarmaOne queremos escucharte. Envíanos tus preguntas o sugerencias.</p>
+
+    <form id="form-contacto">
+
+        <div class="campo-contacto">
+            <label for="nombre">Nombre completo:</label>
+            <input type="text" id="nombre" required minlength="2"
+                   maxlength="100" placeholder="Tu nombre">
+        </div>
+
+        <div class="campo-contacto">
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" required
+                   maxlength="150" placeholder="correo@ejemplo.com">
+        </div>
+
+        <div class="campo-contacto">
+            <label for="asunto">Asunto:</label>
+            <input type="text" id="asunto" required
+                   maxlength="150" placeholder="Motivo del mensaje">
+        </div>
+
+        <div class="campo-contacto">
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" required minlength="5"
+                      maxlength="3000"
+                      placeholder="Escribe tu mensaje aquí..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-contacto" id="btn-enviar">
+            Enviar mensaje
+        </button>
+
+        <div id="mensaje-estado" role="status" aria-live="polite"></div>
+
+    </form>
+
+</main>
+
+<footer class="site-footer">
+    <div class="footer-bottom">
+        &copy; 2026 FarmaOne. Todos los derechos reservados.
+    </div>
+</footer>
+
+<script type="module">
+    import { supabase } from './supabase.js';
+
+    const formulario = document.getElementById('form-contacto');
+    const boton = document.getElementById('btn-enviar');
+    const estado = document.getElementById('mensaje-estado');
+
+    formulario.addEventListener('submit', async (evento) => {
+        evento.preventDefault();
+
+        const nombre = document.getElementById('nombre').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const asunto = document.getElementById('asunto').value.trim();
+        const mensaje = document.getElementById('mensaje').value.trim();
+
+        if (!nombre || !email || !asunto || !mensaje) {
+            estado.style.color = '#c0392b';
+            estado.textContent = 'Completa todos los campos.';
+            return;
+        }
+
+        boton.disabled = true;
+        boton.textContent = 'Enviando...';
+        estado.textContent = '';
+
+        try {
+            const { error } = await supabase
+                .from('contactos')
+                .insert([{
+                    nombre,
+                    email,
+                    asunto,
+                    mensaje
+                }]);
+
+            if (error) throw error;
+
+            estado.style.color = '#16834a';
+            estado.textContent = '¡Mensaje enviado correctamente!';
+
+            formulario.reset();
+
+        } catch (error) {
+            console.error('Error al enviar contacto:', error);
+            estado.style.color = '#c0392b';
+            estado.textContent = 'No se pudo enviar el mensaje: ' + error.message;
+
+        } finally {
+            boton.disabled = false;
+            boton.textContent = 'Enviar mensaje';
+        }
+    });
+</script>
+
+</body>
+</html>
