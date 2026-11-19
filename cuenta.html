@@ -161,6 +161,9 @@
             <li><a href="index.html">Inicio</a></li>
 
             <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="admin.html" id="enlaceAdmin" hidden>
+  Administración
+</a></li>
 
             <li>
                 <details>
@@ -584,6 +587,23 @@
         });
 
         comprobarSesion();
+
+        import { supabase } from './supabase.js';
+
+  const enlaceAdmin = document.getElementById('enlaceAdmin');
+
+  async function verificarAdministrador() {
+    const { data: { session } } = await supabase.auth.getSession();
+
+    enlaceAdmin.hidden =
+      session?.user?.app_metadata?.role !== 'admin';
+  }
+
+  verificarAdministrador();
+
+  supabase.auth.onAuthStateChange(() => {
+    verificarAdministrador();
+  });
 
     </script>
 

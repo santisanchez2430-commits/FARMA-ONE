@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <title>FarmaOne - Tu Farmacia en Línea</title>
   </head>
-  
+
   <script type="module" src="supabase.js"></script>
 
   <body>
@@ -38,6 +38,9 @@
       <ul>
         <li><a href="index.html">Inicio</a></li>
         <li><a href="catalogo.html" style="color: #0995d6; font-weight: bold;">Catálogo </a></li>
+       <li><a href="admin.html" id="enlaceAdmin" hidden>
+  Administración
+</a></li>
         <li>
           <details>
             <summary style="cursor: pointer; color: #0995d6; font-weight: bold; font-size: 1.1rem;">Categorías ▼</summary>
@@ -136,6 +139,23 @@
       btn.addEventListener('click', () => {
         menu.classList.toggle('active');
       });
+
+      import { supabase } from './supabase.js';
+
+  const enlaceAdmin = document.getElementById('enlaceAdmin');
+
+  async function verificarAdministrador() {
+    const { data: { session } } = await supabase.auth.getSession();
+
+    enlaceAdmin.hidden =
+      session?.user?.app_metadata?.role !== 'admin';
+  }
+
+  verificarAdministrador();
+
+  supabase.auth.onAuthStateChange(() => {
+    verificarAdministrador();
+  });
     </script>
   </body>
 </html>
