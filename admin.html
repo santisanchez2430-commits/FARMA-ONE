@@ -1,0 +1,496 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FarmaOne | Administración</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f2f5f8;
+      color: #263238;
+    }
+
+    header {
+      background: #087e75;
+      color: white;
+      padding: 20px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    header h1 {
+      font-size: 24px;
+    }
+
+    header a {
+      color: white;
+      text-decoration: none;
+      margin-right: 15px;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 15px;
+      font-weight: bold;
+    }
+
+    .logout {
+      background: white;
+      color: #087e75;
+    }
+
+    main {
+      width: 92%;
+      max-width: 1250px;
+      margin: 30px auto;
+    }
+
+    .bienvenida {
+      margin-bottom: 25px;
+    }
+
+    .bienvenida p {
+      color: #607078;
+      margin-top: 8px;
+    }
+
+    .resumen {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .tarjeta {
+      background: white;
+      padding: 22px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px #0000000d;
+    }
+
+    .tarjeta h3 {
+      color: #607078;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .tarjeta strong {
+      font-size: 27px;
+      color: #087e75;
+    }
+
+    .seccion {
+      background: white;
+      padding: 22px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 8px #0000000d;
+    }
+
+    .seccion h2 {
+      margin-bottom: 18px;
+      font-size: 20px;
+    }
+
+    .tabla-contenedor {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 650px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 13px;
+      border-bottom: 1px solid #e6ebee;
+      font-size: 14px;
+    }
+
+    th {
+      background: #edf7f5;
+      color: #087e75;
+    }
+
+    select {
+      padding: 8px;
+      border: 1px solid #ccd5d9;
+      border-radius: 5px;
+    }
+
+    .guardar {
+      background: #087e75;
+      color: white;
+      margin-left: 5px;
+    }
+
+    .actualizar {
+      background: #e5f3f1;
+      color: #087e75;
+      margin-bottom: 15px;
+    }
+
+    .mensaje {
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      display: none;
+    }
+
+    .error {
+      background: #ffebee;
+      color: #b71c1c;
+    }
+
+    .exito {
+      background: #e8f5e9;
+      color: #1b5e20;
+    }
+
+    .producto {
+      padding: 13px 0;
+      border-bottom: 1px solid #e6ebee;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .producto small {
+      color: #607078;
+    }
+
+    .vacio {
+      color: #607078;
+      padding: 15px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #607078;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        align-items: flex-start;
+      }
+
+      header h1 {
+        font-size: 20px;
+      }
+
+      main {
+        width: 95%;
+      }
+
+      .seccion {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>FarmaOne | Administración</h1>
+
+  <nav>
+    <a href="index.html">Inicio</a>
+    <button class="logout" id="cerrarSesion">Cerrar sesión</button>
+  </nav>
+</header>
+
+<main>
+
+  <section class="bienvenida">
+    <h2>Panel administrativo</h2>
+    <p>Gestiona los pedidos y consulta los productos de FarmaOne.</p>
+    <p id="correoAdmin"></p>
+  </section>
+
+  <div id="mensaje" class="mensaje"></div>
+
+  <section class="resumen">
+    <div class="tarjeta">
+      <h3>Total de pedidos</h3>
+      <strong id="totalPedidos">0</strong>
+    </div>
+
+    <div class="tarjeta">
+      <h3>Pedidos pendientes</h3>
+      <strong id="pendientes">0</strong>
+    </div>
+
+    <div class="tarjeta">
+      <h3>Productos activos</h3>
+      <strong id="totalProductos">0</strong>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <h2>Gestión de pedidos</h2>
+    <button class="actualizar" id="actualizarPedidos">
+      Actualizar pedidos
+    </button>
+
+    <div class="tabla-contenedor">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Teléfono</th>
+            <th>Entrega</th>
+            <th>Total</th>
+            <th>Estado</th>
+            <th>Actualizar</th>
+          </tr>
+        </thead>
+        <tbody id="tablaPedidos">
+          <tr>
+            <td colspan="7">Cargando pedidos...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <h2>Productos registrados</h2>
+    <div id="listaProductos">
+      <p class="vacio">Cargando productos...</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  FarmaOne © 2026 | Panel de administración
+</footer>
+
+<script type="module">
+  import { supabase } from './supabase.js';
+
+  // IMPORTANTE:
+  // Reemplaza este texto por el correo de la cuenta
+  // que utilizarás como administrador.
+  const ADMIN_EMAIL = 'farmaone2430@gmail.com';
+
+  const mensaje = document.getElementById('mensaje');
+
+  function mostrarMensaje(texto, tipo = 'error') {
+    mensaje.textContent = texto;
+    mensaje.className = 'mensaje ' + tipo;
+    mensaje.style.display = 'block';
+  }
+
+  function ocultarMensaje() {
+    mensaje.style.display = 'none';
+  }
+
+  function escapar(texto) {
+    return String(texto ?? '').replace(/[&<>"']/g, caracter => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#039;'
+    })[caracter]);
+  }
+
+  async function iniciarPanel() {
+    const { data, error } = await supabase.auth.getSession();
+
+    if (error || !data.session) {
+      window.location.href = 'cuenta.html';
+      return;
+    }
+
+    const usuario = data.session.user;
+    const correo = (usuario.email || '').toLowerCase();
+
+    if (correo !== ADMIN_EMAIL.toLowerCase()) {
+      document.querySelector('main').innerHTML = `
+        <section class="seccion">
+          <h2>Acceso restringido</h2>
+          <p>Esta cuenta no está autorizada para administrar FarmaOne.</p>
+          <p>Correo conectado: ${escapar(correo)}</p>
+        </section>
+      `;
+      return;
+    }
+
+    document.getElementById('correoAdmin').textContent =
+      'Administrador: ' + correo;
+
+    await cargarPedidos();
+    await cargarProductos();
+  }
+
+  async function cargarPedidos() {
+    ocultarMensaje();
+
+    const { data: pedidos, error } = await supabase
+      .from('pedidos')
+      .select('*')
+      .order('fecha_creacion', { ascending: false });
+
+    if (error) {
+      mostrarMensaje('No se pudieron cargar los pedidos: ' + error.message);
+      return;
+    }
+
+    document.getElementById('totalPedidos').textContent = pedidos.length;
+
+    document.getElementById('pendientes').textContent =
+      pedidos.filter(p => p.estado === 'pendiente').length;
+
+    const tabla = document.getElementById('tablaPedidos');
+
+    if (!pedidos.length) {
+      tabla.innerHTML = `
+        <tr><td colspan="7">Todavía no hay pedidos registrados.</td></tr>
+      `;
+      return;
+    }
+
+    tabla.innerHTML = pedidos.map(pedido => `
+      <tr>
+        <td>#${escapar(pedido.id)}</td>
+        <td>
+          ${escapar(pedido.nombre_cliente)}
+          <br>
+          <small>${escapar(pedido.direccion || 'Recoge en tienda')}</small>
+        </td>
+        <td>${escapar(pedido.telefono)}</td>
+        <td>${escapar(pedido.tipo_entrega)}</td>
+        <td>$${Number(pedido.total).toLocaleString('es-CO')}</td>
+        <td>${escapar(pedido.estado)}</td>
+        <td>
+          <select id="estado-${escapar(pedido.id)}">
+            <option value="pendiente" ${pedido.estado === 'pendiente' ? 'selected' : ''}>Pendiente</option>
+            <option value="confirmado" ${pedido.estado === 'confirmado' ? 'selected' : ''}>Confirmado</option>
+            <option value="enviado" ${pedido.estado === 'enviado' ? 'selected' : ''}>Enviado</option>
+            <option value="entregado" ${pedido.estado === 'entregado' ? 'selected' : ''}>Entregado</option>
+          </select>
+          <button class="guardar" data-id="${escapar(pedido.id)}">Guardar</button>
+          <button class="actualizar ver-detalle" data-id="${escapar(pedido.id)}">Ver</button>
+        </td>
+      </tr>
+    `).join('');
+
+    tabla.querySelectorAll('.guardar').forEach(boton => {
+      boton.addEventListener('click', () => cambiarEstado(boton.dataset.id));
+    });
+
+    tabla.querySelectorAll('.ver-detalle').forEach(boton => {
+      boton.addEventListener('click', () => verDetalle(boton.dataset.id));
+    });
+  }
+
+  async function cambiarEstado(id) {
+    const nuevoEstado = document.getElementById('estado-' + id).value;
+
+    const { error } = await supabase
+      .from('pedidos')
+      .update({ estado: nuevoEstado })
+      .eq('id', id);
+
+    if (error) {
+      mostrarMensaje('No se pudo actualizar el pedido: ' + error.message);
+      return;
+    }
+
+    mostrarMensaje('Estado del pedido actualizado.', 'exito');
+    await cargarPedidos();
+  }
+
+  async function verDetalle(id) {
+    const { data, error } = await supabase
+      .from('detalle_pedidos')
+      .select('producto_id, cantidad, precio_unitario')
+      .eq('pedido_id', id);
+
+    if (error) {
+      mostrarMensaje('No se pudo consultar el detalle: ' + error.message);
+      return;
+    }
+
+    if (!data.length) {
+      mostrarMensaje('Este pedido no tiene productos registrados.');
+      return;
+    }
+
+    const resumen = data.map(item =>
+      `Producto #${item.producto_id} | Cantidad: ${item.cantidad} | Precio: $${Number(item.precio_unitario).toLocaleString('es-CO')}`
+    ).join('\n');
+
+    alert('Productos del pedido #' + id + ':\n\n' + resumen);
+  }
+
+  async function cargarProductos() {
+    const { data, error } = await supabase
+      .from('productos')
+      .select('id, nombre, categoria, precio, stock, activo')
+      .order('nombre');
+
+    if (error) {
+      mostrarMensaje('No se pudieron cargar los productos: ' + error.message);
+      return;
+    }
+
+    const activos = data.filter(p => p.activo === true);
+    document.getElementById('totalProductos').textContent = activos.length;
+
+    const lista = document.getElementById('listaProductos');
+
+    if (!data.length) {
+      lista.innerHTML = '<p class="vacio">No hay productos registrados.</p>';
+      return;
+    }
+
+    lista.innerHTML = data.map(producto => `
+      <div class="producto">
+        <div>
+          <strong>${escapar(producto.nombre)}</strong><br>
+          <small>${escapar(producto.categoria)} | ID: ${escapar(producto.id)}</small>
+        </div>
+        <div>
+          <strong>$${Number(producto.precio).toLocaleString('es-CO')}</strong><br>
+          <small>Existencias: ${escapar(producto.stock)} | ${producto.activo ? 'Activo' : 'Inactivo'}</small>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  document.getElementById('actualizarPedidos')
+    .addEventListener('click', cargarPedidos);
+
+  document.getElementById('cerrarSesion')
+    .addEventListener('click', async () => {
+      await supabase.auth.signOut();
+      window.location.href = 'cuenta.html';
+    });
+
+  iniciarPanel();
+</script>
+
+</body>
+</html>
